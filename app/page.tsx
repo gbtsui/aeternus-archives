@@ -1,8 +1,17 @@
+"use client"
+
+import Startup from "@/app/components/Startup";
+import {useState} from "react";
+
+type HomeState = "startup" | "standby" | "selected"
+
 export default function Home() {
+    const [homeState, setHomeState] = useState<HomeState>("startup");
+
     return (
         <div className="flex min-h-screen items-center justify-center">
             <div className={"flex flex-col items-center justify-center"}>
-                <div>aeternus archives</div>
+                <Startup visible={homeState === "startup"} onFinish={() => setHomeState("standby")} />
             </div>
         </div>
     );
