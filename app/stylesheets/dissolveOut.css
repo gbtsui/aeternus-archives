@@ -1,0 +1,13 @@
+@keyframes dissolveOut {
+
+
+    0% {
+        opacity: 1;
+        filter: blur(0)/* Start state */
+    }
+    100% {
+        opacity: 0;
+        filter: blur(3rem)
+        /* End state */
+    }
+}

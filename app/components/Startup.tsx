@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useMemo, useState} from "react";
+import "@/app/stylesheets/dissolveOut.css"
 
 type StartupProps = {
     visible: boolean;
@@ -9,10 +10,11 @@ type StartupProps = {
 
 const message =
     "A play is driven by its actors, a game of chess by its pieces, a life by its actions.";
+/*
 const message_2 =
     "What was - is not, " +
     "what will be - is not, " +
-    "only what is now - is.";
+    "only what is now - is.";*/
 
 const useTypewriter = (
     text: string,
@@ -40,21 +42,36 @@ const useTypewriter = (
             const timer = setTimeout(() => onFinish(), cooldownOnFinish);
             return () => clearTimeout(timer); // cleanup
         }
-    }, [displayText, cooldownOnFinish, onFinish]);
+    }, [displayText, text, cooldownOnFinish, onFinish]);
 
     return displayText;
 };
 
+const animationStyle = {
+    animationName: "dissolveOut",
+    animationDuration: "3000ms",
+    animationFillMode: "forwards"
+}
 
 export default function Startup(props: StartupProps) {
-    const typedMessage = useTypewriter(message, 40, 500, props.onFinish);
+
+    const [complete, setComplete] = useState<boolean>(false);
+
+    const finish = () => {
+        console.log("setComplete")
+        setComplete(true);
+        //setTimeout(() => props.onFinish(), animationStyle.animationDuration as unknown as number);
+    }
+
+    const typedMessage = useTypewriter(message, 40, 3000, finish);
+
 
     if (!props.visible) {
         return null
     }
 
     return (
-        <div className="bg-white text-black w-3/4 h-3/4 flex items-center justify-center absolute">
+        <div className="bg-white text-black w-3/4 h-3/4 flex items-center justify-center absolute" style={complete ? animationStyle : {}}>
             <span className="text-lg">{typedMessage}</span>
         </div>
     );
