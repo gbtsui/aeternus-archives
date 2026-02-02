@@ -1,28 +1,25 @@
 import {ElementBasicMetadata} from "@/app/schema";
 
-const periodicTableElementsBasicData: ElementBasicMetadata[] = [
-    {
+export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata> = {
+    1: {
         atomicNumber: 1,
         symbol: "H",
         name: "Hydrogen",
-
         column: 1,
         row: 1,
+        characterName: "???",
+        archiveDocuments: []
     },
-    {
-        atomicNumber: 2,
-        symbol: "He",
-        name: "Helium",
 
-        column: 18,
-        row: 1,
-    },
-    {
-        atomicNumber: 3,
-        symbol: "Li",
-        name: "Lithium",
-
-        column: 1,
-        row: 2
+    29: {
+        atomicNumber: 29,
+        symbol: "Cu",
+        name: "Copper",
+        column: 4,
+        row: 11,
+        characterName: "Cuprous",
+        archiveDocuments: []
     }
-]
+
+
+}

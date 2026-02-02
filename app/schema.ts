@@ -1,12 +1,5 @@
-export interface ArchiveElement {
-    atomicNumber: number,
-    characterName: string | undefined,
-
-    archiveDocuments: ArchiveDocumentMetadata[]
-}
-
 export interface ArchiveDocumentMetadata {
-    link: string;
+    path: string; //ex. "/public/elementData/1/1.html
 }
 
 export interface ElementBasicMetadata {
@@ -16,4 +9,7 @@ export interface ElementBasicMetadata {
 
     column: number,
     row: number,
+
+    characterName: string | undefined,
+    archiveDocuments: ArchiveDocumentMetadata[]
 }
