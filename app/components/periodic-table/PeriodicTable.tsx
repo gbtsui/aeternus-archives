@@ -22,15 +22,15 @@ function PannableArea(props: PannableAreaProps) {
     const [offset, setOffset] = useState<SillyCoordinates>({x: 0, y: 0});
     const startRef = useRef<SillyCoordinates>({x: 0, y: 0});
     const offsetRef = useRef<SillyCoordinates>({x: 0, y: 0});
-    const panningRef = useRef(false)
+    const [panning, setPanning] = useState(false);
 
     const onMouseDown: MouseEventHandler<HTMLDivElement> = (event: MouseEvent) => {
-        panningRef.current = true
+        setPanning(true)
         startRef.current = {x: event.clientX, y: event.clientY}
     }
 
     const onMouseMove: MouseEventHandler<HTMLDivElement> = (e: MouseEvent) => {
-        if (!panningRef.current) return
+        if (!panning) return
 
         const dx = e.clientX - startRef.current.x
         const dy = e.clientY - startRef.current.y
@@ -42,7 +42,7 @@ function PannableArea(props: PannableAreaProps) {
     }
 
     const onMouseUp: MouseEventHandler<HTMLDivElement> = () => {
-        panningRef.current = false
+        setPanning(false)
         offsetRef.current = offset
     }
 
@@ -57,7 +57,7 @@ function PannableArea(props: PannableAreaProps) {
                 height: "100vh",
                 overflow: "hidden",
                 border: "1px solid black",
-                cursor: panningRef.current ? "grabbing" : "grab",
+                cursor: panning ? "grabbing" : "grab",
             }}
         >
             <div
