@@ -2,6 +2,7 @@
 
 import Startup from "@/app/components/Startup";
 import {useState} from "react";
+import PeriodicTable from "@/app/components/periodic-table/PeriodicTable";
 
 type HomeState = "startup" | "standby" | "selected"
 
@@ -12,6 +13,7 @@ export default function Home() {
         <div className="flex min-h-screen items-center justify-center bg-black">
             <div className={"flex flex-col items-center justify-center"}>
                 <Startup visible={homeState === "startup"} onFinish={() => setHomeState("standby")} />
+                <PeriodicTable visible={homeState === "standby"}/>
             </div>
         </div>
     );
