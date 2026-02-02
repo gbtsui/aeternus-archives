@@ -23,7 +23,7 @@ const useTypewriter = (
     onFinish: () => void
 ) => {
     const [index, setIndex] = useState(0);
-    const displayText = useMemo(() => text.slice(0, index), [index]);
+    const displayText = useMemo(() => text.slice(0, index), [index, text]);
     useEffect(() => {
         if (index >= text.length)
             return;
@@ -49,7 +49,7 @@ const useTypewriter = (
 
 const animationStyle = {
     animationName: "dissolveOut",
-    animationDuration: "3000ms",
+    animationDuration: "3000ms", //note: end with ms!
     animationFillMode: "forwards"
 }
 
@@ -60,7 +60,8 @@ export default function Startup(props: StartupProps) {
     const finish = () => {
         console.log("setComplete")
         setComplete(true);
-        //setTimeout(() => props.onFinish(), animationStyle.animationDuration as unknown as number);
+        const animationDuration = animationStyle.animationDuration.replace("ms", "") as unknown as number //ts lwk jank but we see how it goes
+        setTimeout(() => props.onFinish(), animationDuration);
     }
 
     const typedMessage = useTypewriter(message, 40, 3000, finish);
