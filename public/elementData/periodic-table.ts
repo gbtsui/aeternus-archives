@@ -5,6 +5,7 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         atomicNumber: 1,
         symbol: "H",
         name: "Hydrogen",
+        elementType: "nonMetal",
         column: 1,
         row: 1,
         characterName: "???",
@@ -15,11 +16,12 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         atomicNumber: 29,
         symbol: "Cu",
         name: "Copper",
+        elementType: "transitionMetal",
         column: 11,
         row: 4,
         characterName: "Cuprous",
         archiveDocuments: []
-    }
+    },
 
-
+    
 }
