@@ -113,6 +113,23 @@ function PannableArea(props: PannableAreaProps) {
     )
 }
 
+function shuffle(array: unknown[]) {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        const randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
 //periodic table will be the pannable viewport
 export default function PeriodicTable(props: PeriodicTableProps) {
     if (!props.visible) {
@@ -129,9 +146,21 @@ export default function PeriodicTable(props: PeriodicTableProps) {
     )
     */
 
+    const elements = Object.values(periodicTableElementsBasicData)
+    const shuffledElements = shuffle(elements) as unknown as ElementBasicMetadata[];
+
     return (
         <PannableArea>
-            <ElementBlock elementData={periodicTableElementsBasicData[1]}/>
+            <div style={{
+                display:"grid",
+                gridTemplateColumns: "repeat(18, 100px)",
+                gridTemplateRows: "repeat(9, 100px)",
+                gap: "5px"
+            }}>
+                {shuffledElements.map((element, index) => {
+                    return <ElementBlock elementData={element} key={element.atomicNumber}/>
+                })}
+            </div>
         </PannableArea>
     )
 }

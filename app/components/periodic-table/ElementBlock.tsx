@@ -10,7 +10,8 @@ export default function ElementBlock(props: ElementBlockProps) {
     const {elementData} = props;
 
     return (
-        <div className={"w-[100px] h-[100px] bg-gray-700 flex"}> {/*container*/}
+        <div className={"w-[100px] h-[100px] bg-gray-700 flex"}
+             style={{gridColumn: elementData.column, gridRow: elementData.row}}> {/*container*/}
             <div className={"m-[4px] flex items-center w-full bg-gray-600"}> {/*border*/}
                 <div className={"flex flex-col items-center w-full select-none"}>{/*inside thingy*/}
                     <div className={"w-full ml-[10px] self-start"}>{/*top part*/}
