@@ -15,8 +15,8 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         atomicNumber: 29,
         symbol: "Cu",
         name: "Copper",
-        column: 4,
-        row: 11,
+        column: 11,
+        row: 4,
         characterName: "Cuprous",
         archiveDocuments: []
     }
