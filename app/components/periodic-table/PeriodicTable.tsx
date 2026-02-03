@@ -60,11 +60,27 @@ function PannableArea(props: PannableAreaProps) {
     const onWheel: WheelEventHandler<HTMLDivElement> = (e) => {
         e.preventDefault()
 
-        const zoomFactor = 0.001
-        const next = scale - e.deltaY * zoomFactor
+        const rect = e.currentTarget.getBoundingClientRect()
+        const mx = e.clientX - rect.left
+        const my = e.clientY - rect.top
 
-        setScale(Math.min(4, Math.max(0.25, next)))
+        const wx = (mx - offset.x) / scale
+        const wy = (my - offset.y) / scale
+
+        const zoomFactor = 0.001
+        const next = Math.min(zoomInLimit, Math.max(zoomOutLimit, scale - e.deltaY * zoomFactor))
+        //note for self later: clamps zoom to max zoom zoomInLimit and min zoom zoomOutLimit
+        //im probably gonna forget afterwards lmao
+
+        //setScale(Math.min(4, Math.max(0.25, next)))
+        setOffset({
+            x: mx - wx * next,
+            y: my - wy * next
+        })
+        setScale(next)
     }
+
+    //TODO: zoom+pan is kinda bugged... will need to look at later
 
     return (
         <div
