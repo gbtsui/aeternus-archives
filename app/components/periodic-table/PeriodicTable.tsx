@@ -10,6 +10,7 @@ import {
     ReactNode,
     WheelEventHandler
 } from "react";
+import ElementBlock from "@/app/components/periodic-table/ElementBlock";
 
 type PeriodicTableProps = {
     visible: boolean;
@@ -130,7 +131,7 @@ export default function PeriodicTable(props: PeriodicTableProps) {
 
     return (
         <PannableArea>
-            <div className={"select-none"}>test one two three</div>
+            <ElementBlock elementData={periodicTableElementsBasicData[1]}/>
         </PannableArea>
     )
 }
