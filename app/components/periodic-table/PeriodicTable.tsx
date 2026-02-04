@@ -156,7 +156,9 @@ export default function PeriodicTable(props: PeriodicTableProps) {
                 gridTemplateColumns: "repeat(18, 100px)",
                 gridTemplateRows: "repeat(9, 100px)",
                 gap: "5px"
-            }}>
+            }}
+                 className={"self-center"}
+            >
                 {shuffledElements.map((element, index) => {
                     return <ElementBlock elementData={element} key={element.atomicNumber}/>
                 })}

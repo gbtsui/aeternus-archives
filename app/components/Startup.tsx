@@ -62,6 +62,7 @@ export default function Startup(props: StartupProps) {
         setComplete(true);
         const animationDuration = animationStyle.animationDuration.replace("ms", "") as unknown as number //ts lwk jank but we see how it goes
         setTimeout(() => props.onFinish(), animationDuration);
+        sessionStorage.setItem("startup-played", "true")
     }
 
     const typedMessage = useTypewriter(message, 40, 3000, finish);

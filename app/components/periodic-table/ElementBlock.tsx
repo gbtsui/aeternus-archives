@@ -1,7 +1,8 @@
 "use client"
 
 import {ElementBasicMetadata} from "@/app/schema";
-import {useState} from "react";
+import {MouseEventHandler, useState} from "react";
+import {useRouter} from "next/navigation";
 
 type ElementBlockProps = {
     elementData: ElementBasicMetadata
@@ -22,6 +23,7 @@ const elementTypeColors : Record<string, string> = {
 
 export default function ElementBlock(props: ElementBlockProps) {
     const {elementData} = props;
+    const router = useRouter();
     const [hovering, setHovering] = useState(false);
 
     const hoverStyle = {
@@ -30,7 +32,6 @@ export default function ElementBlock(props: ElementBlockProps) {
         cursor: "pointer",
     }
 
-
     const hoverTextStyle = {
         color: "#000000",
     }
@@ -38,6 +39,10 @@ export default function ElementBlock(props: ElementBlockProps) {
     const hoverBackgroundStyle = {
         backgroundColor: elementTypeColors[elementData.elementType],
         boxShadow: `0 0 10px ${elementTypeColors[elementData.elementType]}`,
+    }
+
+    const onClick: MouseEventHandler<HTMLDivElement> = () => {
+        router.push(`/${elementData.atomicNumber}`) //add more later!! need animation here
     }
 
 
@@ -51,6 +56,7 @@ export default function ElementBlock(props: ElementBlockProps) {
         }}
             onMouseOver={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
+             onClick={onClick}
         > {/*container*/}
             <div className={"m-[4px] flex items-center w-full bg-gray-600 text-gray-300"}> {/*border*/}
                 <div className={"flex flex-col items-center w-full m-[5px] select-none rounded-sm backdrop-blur-sm"}
