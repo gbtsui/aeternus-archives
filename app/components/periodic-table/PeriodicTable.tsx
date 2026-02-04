@@ -26,12 +26,39 @@ type PannableAreaProps = {
 
 type SillyCoordinates = { x: number, y: number }
 
-function PannableArea(props: PannableAreaProps) {
+export const usePannableArea = () => {
     const [offset, setOffset] = useState<SillyCoordinates>({x: 0, y: 0});
     const startRef = useRef<SillyCoordinates>({x: 0, y: 0});
     const offsetRef = useRef<SillyCoordinates>({x: 0, y: 0});
     const [panning, setPanning] = useState<boolean>(false);
     const [scale, setScale] = useState<number>(1)
+    const startPosition = useRef({ x: 0, y: 0 })
+
+
+    return {
+        offset,
+        setOffset,
+        startRef,
+        offsetRef,
+        panning,
+        setPanning,
+        setScale,
+        scale,
+        startPosition
+    }
+}
+
+function PannableArea(props: PannableAreaProps) {
+    const {
+        offset,
+        setOffset,
+        startRef,
+        offsetRef,
+        panning,
+        setPanning,
+        setScale,
+        scale
+    } = usePannableArea()
 
     const zoomOutLimit = 0.2 //how far out can you zoom?
     const zoomInLimit = 8 //how far in can you zoom?
@@ -102,7 +129,7 @@ function PannableArea(props: PannableAreaProps) {
             <div
                 style={{
                     transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale}`,
-                    transformOrigin: "0 0"
+                    transformOrigin: "0 0",
                     //width:
                 }}
             >

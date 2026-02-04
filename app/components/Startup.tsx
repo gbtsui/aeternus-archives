@@ -1,7 +1,7 @@
 "use client";
 
 import {useEffect, useMemo, useState} from "react";
-import "@/app/stylesheets/dissolveOut.css"
+import "@/app/stylesheets/dissolve.css"
 
 type StartupProps = {
     visible: boolean;
@@ -24,9 +24,15 @@ const useTypewriter = (
 ) => {
     const [index, setIndex] = useState(0);
     const displayText = useMemo(() => text.slice(0, index), [index, text]);
+
+    //delay until the end of the animation
+
     useEffect(() => {
         if (index >= text.length)
             return;
+
+        //const introTimeout = setTimeout(() => clearTimeout(introTimeout), animationDurationMilliseconds)
+        //ughhhhhh
 
         const timeoutId = setTimeout(() => {
             setIndex(i => i + 1);
@@ -47,9 +53,17 @@ const useTypewriter = (
     return displayText;
 };
 
-const animationStyle = {
+const animationDurationMilliseconds = 3000
+
+const outroAnimationStyle = {
     animationName: "dissolveOut",
-    animationDuration: "3000ms", //note: end with ms!
+    animationDuration: `${animationDurationMilliseconds}ms`, //note: end with ms!
+    animationFillMode: "forwards"
+}
+
+const introAnimationStyle = {
+    animationName: "dissolveIn",
+    animationDuration: `${animationDurationMilliseconds}ms`,
     animationFillMode: "forwards"
 }
 
@@ -60,10 +74,10 @@ export default function Startup(props: StartupProps) {
     const finish = () => {
         console.log("setComplete")
         setComplete(true);
-        const animationDuration = animationStyle.animationDuration.replace("ms", "") as unknown as number //ts lwk jank but we see how it goes
-        setTimeout(() => props.onFinish(), animationDuration);
+        setTimeout(() => props.onFinish(), animationDurationMilliseconds);
         sessionStorage.setItem("startup-played", "true")
     }
+
 
     const typedMessage = useTypewriter(message, 40, 3000, finish);
 
@@ -73,7 +87,7 @@ export default function Startup(props: StartupProps) {
     }
 
     return (
-        <div className="bg-white text-black w-3/4 h-3/4 flex items-center justify-center absolute" style={complete ? animationStyle : {}}>
+        <div className="bg-white text-black w-3/4 h-3/4 flex items-center justify-center absolute" style={complete ? outroAnimationStyle : introAnimationStyle}>
             <span className="text-lg">{typedMessage}</span>
         </div>
     );
