@@ -1,7 +1,7 @@
 "use client"
 
 import {ElementBasicMetadata} from "@/app/schema";
-import {MouseEventHandler, useState} from "react";
+import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {usePannableContext} from "@/app/components/periodic-table/PeriodicTable";
 
@@ -47,7 +47,7 @@ export default function ElementBlock(props: ElementBlockProps) {
 
     const onPointerUp = () => {
         if(!panning && !didDrag){
-            router.push(`/${elementData.atomicNumber}`) //add more later!! need animation here
+            router.push(`/atomicNumber/${elementData.atomicNumber}`) //add more later!! need animation here
         }
     }
 
@@ -60,8 +60,8 @@ export default function ElementBlock(props: ElementBlockProps) {
                  transition: "all 0.5s ease",
                  ...(hovering ? hoverStyle : {})
         }}
-            onPointerOver={() => setHovering(true)}
-            onPointerLeave={() => setHovering(false)}
+             onPointerOver={() => setHovering(true)}
+             onPointerLeave={() => setHovering(false)}
              onPointerUp={onPointerUp}
         > {/*container*/}
             <div className={"m-[4px] flex items-center w-full bg-gray-600 text-gray-300"}> {/*border*/}
