@@ -5,7 +5,7 @@ import "@/app/stylesheets/dissolve.css"
 
 type StartupProps = {
     visible: boolean;
-    onFinish: () => void;
+    onFinish(): void;
 };
 
 const message =
