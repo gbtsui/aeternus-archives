@@ -3,12 +3,11 @@
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
 import {ElementBasicMetadata} from "@/app/schema";
 import {
-    MouseEventHandler,
-    MouseEvent,
+    PointerEvent,
     useRef,
     useState,
     ReactNode,
-    WheelEventHandler
+    WheelEventHandler, PointerEventHandler, Dispatch, SetStateAction, createContext, RefObject, useContext
 } from "react";
 import ElementBlock from "@/app/components/periodic-table/ElementBlock";
 
@@ -26,14 +25,30 @@ type PannableAreaProps = {
 
 type SillyCoordinates = { x: number, y: number }
 
-export const usePannableArea = () => {
+export type usePannableAreaTypes = {
+    offset: SillyCoordinates;
+    setOffset: Dispatch<SetStateAction<SillyCoordinates>>,
+    startRef: RefObject<SillyCoordinates>,
+    offsetRef: RefObject<SillyCoordinates>,
+    panning: boolean,
+    setPanning: Dispatch<SetStateAction<boolean>>
+    setScale: Dispatch<SetStateAction<number>>,
+    scale: number,
+    mouseDown: boolean,
+    setMouseDown: Dispatch<SetStateAction<boolean>>,
+    didDrag: boolean,
+    setDidDrag: Dispatch<SetStateAction<boolean>>,
+}
+
+//THIS ONE CREATES AN INSTANCE!!!!
+export const usePannable: () => usePannableAreaTypes = (): usePannableAreaTypes => {
     const [offset, setOffset] = useState<SillyCoordinates>({x: 0, y: 0});
     const startRef = useRef<SillyCoordinates>({x: 0, y: 0});
     const offsetRef = useRef<SillyCoordinates>({x: 0, y: 0});
     const [panning, setPanning] = useState<boolean>(false);
     const [scale, setScale] = useState<number>(1)
-    const startPosition = useRef({ x: 0, y: 0 })
-
+    const [mouseDown, setMouseDown] = useState<boolean>(false)
+    const [didDrag, setDidDrag] = useState<boolean>(false)
 
     return {
         offset,
@@ -44,11 +59,24 @@ export const usePannableArea = () => {
         setPanning,
         setScale,
         scale,
-        startPosition
+        mouseDown,
+        setMouseDown,
+        didDrag,
+        setDidDrag
     }
 }
 
+export const PannableContext = createContext<ReturnType<typeof usePannable> | null>(null)
+
+//THIS ONE IS SUPPOSED TO BE USED EVERYWHERE ELSE
+export const usePannableContext = () => {
+    const context = useContext(PannableContext)
+    if (!context) throw new Error("usePannable must be used inside PannableArea :P")
+    return context
+}
+
 function PannableArea(props: PannableAreaProps) {
+    const pannable = usePannable()
     const {
         offset,
         setOffset,
@@ -57,22 +85,36 @@ function PannableArea(props: PannableAreaProps) {
         panning,
         setPanning,
         setScale,
-        scale
-    } = usePannableArea()
+        scale,
+        mouseDown,
+        setMouseDown,
+        //didDrag,
+        setDidDrag
+    } = pannable
 
     const zoomOutLimit = 0.2 //how far out can you zoom?
     const zoomInLimit = 8 //how far in can you zoom?
 
-    const onMouseDown: MouseEventHandler<HTMLDivElement> = (event: MouseEvent) => {
-        setPanning(true)
+    const onPointerDown: PointerEventHandler<HTMLDivElement> = (event: PointerEvent<HTMLDivElement>) => {
+        setPanning(false)
+        setMouseDown(true)
         startRef.current = {x: event.clientX, y: event.clientY}
     }
 
-    const onMouseMove: MouseEventHandler<HTMLDivElement> = (e: MouseEvent) => {
-        if (!panning) return
-
+    const onPointerMove: PointerEventHandler<HTMLDivElement> = (e: PointerEvent<HTMLDivElement>) => {
         const dx = e.clientX - startRef.current.x
         const dy = e.clientY - startRef.current.y
+
+        if (!panning && mouseDown) {
+            if (Math.hypot(dx, dy) > 1) {
+                setPanning(true)
+                setDidDrag(true)
+            } else {
+                return
+            }
+        }
+
+        if (!panning) return
 
         setOffset({
             x: offsetRef.current.x + dx,
@@ -80,8 +122,11 @@ function PannableArea(props: PannableAreaProps) {
         })
     }
 
-    const onMouseUp: MouseEventHandler<HTMLDivElement> = () => {
+    const onPointerUp: PointerEventHandler<HTMLDivElement> = () => {
+        //event.currentTarget.releasePointerCapture(event.pointerId) //only will work for onPointerUp... research difference tmr and allat
         setPanning(false)
+        setMouseDown(false)
+        setDidDrag(false)
         offsetRef.current = offset
     }
 
@@ -111,32 +156,34 @@ function PannableArea(props: PannableAreaProps) {
     //TODO: zoom+pan is kinda bugged... will need to look at later
 
     return (
-        <div
-            onMouseDown={onMouseDown}
-            onMouseMove={onMouseMove}
-            onMouseUp={onMouseUp}
-            onMouseLeave={onMouseUp}
-            onWheel={onWheel}
-            style={{
-                width: "98vw",
-                height: "98vh",
-                overflow: "hidden",
-                border: "1px solid black",
-                cursor: panning ? "grabbing" : "grab",
-                backgroundColor: "#161625"
-            }}
-        >
+        <PannableContext.Provider value={pannable}>
             <div
+                onPointerDown={onPointerDown}
+                onPointerUp={onPointerUp}
+                onPointerMove={onPointerMove}
+                onPointerLeave={onPointerUp}
+                onWheel={onWheel}
                 style={{
-                    transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale}`,
-                    transformOrigin: "0 0",
-                    //width:
+                    width: "98vw",
+                    height: "98vh",
+                    overflow: "hidden",
+                    border: "1px solid black",
+                    cursor: panning ? "grabbing" : "grab",
+                    backgroundColor: "#161625"
                 }}
             >
-                {props.children}
-            </div>
+                <div
+                    style={{
+                        transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale}`,
+                        transformOrigin: "0 0",
+                        //width:
+                    }}
+                >
+                    {props.children}
+                </div>
 
-        </div>
+            </div>
+        </PannableContext.Provider>
     )
 }
 
@@ -159,6 +206,8 @@ function shuffle(array: unknown[]) {
 
 //periodic table will be the pannable viewport
 export default function PeriodicTable(props: PeriodicTableProps) {
+
+
     if (!props.visible) {
         return null
     }
@@ -173,23 +222,32 @@ export default function PeriodicTable(props: PeriodicTableProps) {
     )
     */
 
+
     const elements = Object.values(periodicTableElementsBasicData)
     const shuffledElements = shuffle(elements) as unknown as ElementBasicMetadata[];
+
 
     return (
         <PannableArea>
             <div style={{
-                display:"grid",
+                display: "grid",
                 gridTemplateColumns: "repeat(18, 100px)",
                 gridTemplateRows: "repeat(9, 100px)",
                 gap: "5px"
             }}
                  className={"self-center"}
             >
-                {shuffledElements.map((element, index) => {
+                {shuffledElements.map((element) => {
                     return <ElementBlock elementData={element} key={element.atomicNumber}/>
                 })}
             </div>
+        <DidDragChecker/>
         </PannableArea>
     )
+}
+
+const DidDragChecker = () => {
+
+    const {didDrag} = usePannableContext()
+    return <div className={"text-7xl"}>{didDrag ? "true" : "false"}</div>
 }

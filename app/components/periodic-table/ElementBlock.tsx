@@ -3,6 +3,7 @@
 import {ElementBasicMetadata} from "@/app/schema";
 import {MouseEventHandler, useState} from "react";
 import {useRouter} from "next/navigation";
+import {usePannableContext} from "@/app/components/periodic-table/PeriodicTable";
 
 type ElementBlockProps = {
     elementData: ElementBasicMetadata
@@ -41,8 +42,13 @@ export default function ElementBlock(props: ElementBlockProps) {
         boxShadow: `0 0 10px ${elementTypeColors[elementData.elementType]}`,
     }
 
-    const onClick: MouseEventHandler<HTMLDivElement> = () => {
-        router.push(`/${elementData.atomicNumber}`) //add more later!! need animation here
+    const {panning, didDrag} = usePannableContext()
+
+
+    const onPointerUp = () => {
+        if(!panning && !didDrag){
+            router.push(`/${elementData.atomicNumber}`) //add more later!! need animation here
+        }
     }
 
 
@@ -54,9 +60,9 @@ export default function ElementBlock(props: ElementBlockProps) {
                  transition: "all 0.5s ease",
                  ...(hovering ? hoverStyle : {})
         }}
-            onMouseOver={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-             onClick={onClick}
+            onPointerOver={() => setHovering(true)}
+            onPointerLeave={() => setHovering(false)}
+             onPointerUp={onPointerUp}
         > {/*container*/}
             <div className={"m-[4px] flex items-center w-full bg-gray-600 text-gray-300"}> {/*border*/}
                 <div className={"flex flex-col items-center w-full m-[5px] select-none rounded-sm backdrop-blur-sm"}
