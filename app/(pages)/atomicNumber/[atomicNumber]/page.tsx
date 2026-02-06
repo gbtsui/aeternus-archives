@@ -7,6 +7,7 @@ import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDoc
 import {ArchiveDocumentMetadata} from "@/app/schema";
 import {Property} from "csstype";
 import PointerEvents = Property.PointerEvents;
+import StickyNote from "@/app/components/aesthetic/StickyNote";
 
 type StageState = "closed" | "opening" | "open" | "closing"
 
@@ -34,6 +35,9 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
 
     return (
         <div className={"flex"}>
+            <StickyNote>
+                whats up gang
+            </StickyNote>
             <DocumentStage state={stageState} setState={setStageState}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
                 <div className={"text-gray-700 text-3xl text-center"}>
