@@ -1,14 +1,31 @@
 "use client";
 
 import {use} from "react";
+import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
+import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
 
-export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
+
+
+export default function ElementPage({params} : {params: Promise<{atomicNumber: number}>}) {
     const {atomicNumber} = use(params)
-    console.log(atomicNumber)
+    const elementData = periodicTableElementsBasicData[atomicNumber]
+    const archiveDocuments = elementData.archiveDocuments
 
+    //refactor this iframe into a separate component at some point?
+    //shadowDOM?
+    //blegh
+
+    /*
     return (
         <div>
-            {atomicNumber}
+            {archiveDocuments.map((archiveDoc, index) => <iframe src={archiveDoc.path} title={archiveDoc.title} key={index}></iframe>)}
+        </div>
+    )
+
+     */
+    return (
+        <div>
+            {archiveDocuments.map((archiveDoc, index) => <div key={index}/>)}
         </div>
     )
 }

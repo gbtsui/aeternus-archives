@@ -1,5 +1,6 @@
 export interface ArchiveDocumentMetadata {
     path: string; //ex. "/public/elementData/1/1.html
+    title: string; //ex. "archive doc 1, aeternus intake form
 }
 
 export interface ElementBasicMetadata {
