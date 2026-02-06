@@ -1,6 +1,6 @@
 "use client";
 
-import {CSSProperties, use, useState} from "react";
+import {CSSProperties, Dispatch, SetStateAction, use, useEffect, useRef, useState} from "react";
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
 //import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
 import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
@@ -34,7 +34,7 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
 
     return (
         <div>
-            <DocumentStage open={stageState==="open"} setOpening={() => setStageState("opening")} setClosing={()=>setStageState("closing")}/>
+            <DocumentStage state={stageState} setState={setStageState}/>
             {activeDocument && <ArchiveDocumentContainer data={activeDocument} atomicNumber={atomicNumberAsNumber}/>}
             {activeDocument ? <div>{activeDocument.toString()}</div> : <div>null</div>}
         </div>
@@ -51,21 +51,22 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
 //i need a drawer...
 
 type DocumentStageProps = {
-    open: boolean,
-    setOpening: () => void,
-    setClosing: () => void,
+    state: StageState,
+    setState: Dispatch<SetStateAction<StageState>>
 }
 
 function DocumentStage(props: DocumentStageProps) {
-    const {open, setOpening, setClosing} = props;
+    const {state, setState} = props;
 
     const overallStyle: CSSProperties = {
         position: "fixed",
-        left: "0",
+        left: "5vw",
         right: "0",
-        bottom: "0",
-        height: "70vh",
-        backgroundColor: "white"
+        bottom: "2vh",
+        height: "48vh",
+        backgroundColor: "white",
+        transitionDuration: "0.67s",
+        transitionProperty: "all"
     }
 
     const closedStyle: CSSProperties = {
@@ -80,9 +81,24 @@ function DocumentStage(props: DocumentStageProps) {
         pointerEvents: "auto" as PointerEvents
     }
 
-    return (
-        <div style={{...(overallStyle), ...(open ? openStyle : closedStyle)}}>
+    const ref = useRef<HTMLDivElement | null>(null)
 
+    useEffect(() => {
+        const element = ref.current
+        if (!element) return
+
+        const onTransitionEnd = (e: Event) => {
+            console.log("transition end")
+        }
+
+        element.addEventListener("transitionend", onTransitionEnd)
+    })
+
+    return (
+        <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}>
+            <div className={"top-1vh text-black"}>
+                <button onClick={state === "open" ? () => setState("closing") : (state === "closed" ? () => setState("opening") : () => {})}>{state === "open" ? <div>close</div> : <div>open</div>}</button>
+            </div>
         </div>
     )
 }
