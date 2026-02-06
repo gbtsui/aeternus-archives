@@ -42,6 +42,10 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     if (error) return <div>{error}</div>
     if (!htmlData) return null;
 
+
+    //need to add good animations and stuff.
+    //also panning and such
+    //should just be a wrapper around ShadowDOMComponent?
     return (
         <div style={{contain: "initial"}} className={"h-1/2 bg-white text-black"}>
             <ShadowDOMComponent htmlContent={htmlData}/>
