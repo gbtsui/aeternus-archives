@@ -33,8 +33,14 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
     //blegh
 
     return (
-        <div>
+        <div className={"flex"}>
             <DocumentStage state={stageState} setState={setStageState}/>
+            <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
+                <div className={"text-gray-700 text-3xl text-center"}>
+                    archive document reader
+                </div>
+            </div>
+
             {activeDocument && <ArchiveDocumentContainer data={activeDocument} atomicNumber={atomicNumberAsNumber}/>}
             {activeDocument ? <div>{activeDocument.toString()}</div> : <div>null</div>}
         </div>
@@ -64,9 +70,10 @@ function DocumentStage(props: DocumentStageProps) {
         right: "0",
         bottom: "2vh",
         height: "48vh",
-        backgroundColor: "white",
+        backgroundColor: "#9298a2",
         transitionDuration: "0.67s",
-        transitionProperty: "all"
+        transitionProperty: "all",
+        zIndex: 5,
     }
 
     const closedStyle: CSSProperties = {
@@ -107,9 +114,12 @@ function DocumentStage(props: DocumentStageProps) {
     }
 
     return (
-        <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}>
-            <div className={"top-1vh text-black"}>
-                <button onClick={changeState} className={"pointer-events-auto"}>{state}</button>
+        <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}
+            className={"border-gray-700 border-[0.5rem] border-r-0"}
+        >
+            <div onClick={changeState} className={"cursor-pointer pointer-events-auto absolute top-[-3vh] left-[2vw] border-t-[0.5rem] border-x-[0.5rem] border-gray-700 text-black bg-[#9298a2] p-[1rem]"}>
+                <div className={"top-[1vh] z-6"}>{state === "open" ? <div>CLOSE</div> : <div>OPEN </div>}</div>
+                <div className={"absolute top-[-2.75vh] text-gray-300"}>{state}</div>
             </div>
         </div>
     )
