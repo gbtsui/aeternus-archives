@@ -87,17 +87,29 @@ function DocumentStage(props: DocumentStageProps) {
         const element = ref.current
         if (!element) return
 
-        const onTransitionEnd = (e: Event) => {
-            console.log("transition end")
+        const handler = (e: TransitionEvent) => {
+            if (e.propertyName !== "transform") return
+
+            setState(prev =>
+                prev === "closing" ? "closed" :
+                    prev === "opening" ? "open" : prev
+            )
         }
 
-        element.addEventListener("transitionend", onTransitionEnd)
-    })
+        element.addEventListener("transitionend", handler)
+        return () => element.removeEventListener("transitionend", handler)
+    }, [])
+
+    const changeState = () => {
+        console.log("changeState called")
+        if (state === "open") setState("closing")
+        else if (state === "closed") setState("opening");
+    }
 
     return (
         <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}>
             <div className={"top-1vh text-black"}>
-                <button onClick={state === "open" ? () => setState("closing") : (state === "closed" ? () => setState("opening") : () => {})}>{state === "open" ? <div>close</div> : <div>open</div>}</button>
+                <button onClick={changeState} className={"pointer-events-auto"}>{state}</button>
             </div>
         </div>
     )
