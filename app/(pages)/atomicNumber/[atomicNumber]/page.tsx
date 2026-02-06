@@ -2,7 +2,8 @@
 
 import {use} from "react";
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
-import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
+//import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
+import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
 
 
 
@@ -25,7 +26,8 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: n
      */
     return (
         <div>
-            {archiveDocuments.map((archiveDoc, index) => <div key={index}/>)}
+            {archiveDocuments.map((archiveDoc, index) => <ArchiveDocumentContainer data={archiveDoc} key={index} atomicNumber={atomicNumber}/>)}
+            <div>{archiveDocuments.map((archiveDoc, index) => <div key={index}>{JSON.stringify(archiveDoc)}</div>)}</div>
         </div>
     )
 }
