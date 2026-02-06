@@ -9,6 +9,13 @@ type ArchiveDocumentContainerProps = {
     atomicNumber: number
 }
 
+const frameCSS = {
+    position: "relative",
+    overflow: "hidden",
+    width: "800px",
+    height: "600px"
+}
+
 export default function ArchiveDocumentContainer(props: ArchiveDocumentContainerProps) {
     const {data, atomicNumber} = props;
     const [htmlData, setHtmlData] = useState<string | null>(null)
@@ -47,8 +54,21 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     //also panning and such
     //should just be a wrapper around ShadowDOMComponent?
     return (
-        <div style={{contain: "initial"}} className={"h-1/2 bg-white text-black"}>
-            <ShadowDOMComponent htmlContent={htmlData}/>
+        <div> {/*full container?*/}
+            <div> {/*viewport frame - fixed size...*/}
+                <div>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
+                    {/*i should break the camera into its own component perhaps?*/}
+                    {/*shadowDOM wrapper goes here ig*/}
+                    <div style={{contain: "initial"}} className={"h-1/2 bg-white text-black"}>
+                        <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
+
+//okay so CSS transforms really shouldnt cross shadowDOM boundaries. ts would be bad because it messes up all the internal HTML styling i will work hard on
+//contain: initial should probably get things done...? plus the shadowDOMRoot itself should probably handle it
+//i'll need to debug if it comes up tho.
+//the color of my stool is turning red because my femboy went too hard in bed

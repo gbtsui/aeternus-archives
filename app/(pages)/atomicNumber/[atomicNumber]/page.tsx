@@ -1,15 +1,21 @@
 "use client";
 
-import {use} from "react";
+import {CSSProperties, use, useState} from "react";
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
 //import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
 import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
+import {ArchiveDocumentMetadata} from "@/app/schema";
+import {Property} from "csstype";
+import PointerEvents = Property.PointerEvents;
 
-
+type StageState = "closed" | "opening" | "open" | "closing"
 
 export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
     const {atomicNumber} = use(params)
     const atomicNumberAsNumber = Number(atomicNumber)
+
+    const [activeDocument, setActiveDocument] = useState<ArchiveDocumentMetadata | null>(null)
+    const [stageState, setStageState] = useState<StageState>("open")
 
     if (!Number.isInteger(atomicNumberAsNumber)) {
         return <div>Error! Invalid element. Maybe I have not added it yet, or maybe it is an impossible atomic number...</div>
@@ -20,50 +26,63 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
         return <div>Element data not found.</div>
     }
 
-    const archiveDocuments = elementData.archiveDocuments
+    const {archiveDocuments} = elementData;
 
     //refactor this iframe into a separate component at some point?
     //shadowDOM?
     //blegh
 
-    /*
     return (
         <div>
-            {archiveDocuments.map((archiveDoc, index) => <iframe src={archiveDoc.path} title={archiveDoc.title} key={index}></iframe>)}
+            <DocumentStage open={stageState==="open"} setOpening={() => setStageState("opening")} setClosing={()=>setStageState("closing")}/>
+            {activeDocument && <ArchiveDocumentContainer data={activeDocument} atomicNumber={atomicNumberAsNumber}/>}
+            {activeDocument ? <div>{activeDocument.toString()}</div> : <div>null</div>}
         </div>
     )
 
-     */
+    /*
     return (
         <div>
             {archiveDocuments.map((archiveDoc, index) => <ArchiveDocumentContainer data={archiveDoc} key={index} atomicNumber={atomicNumberAsNumber}/>)}
             <div>{archiveDocuments.map((archiveDoc, index) => <div key={index}>{JSON.stringify(archiveDoc)}</div>)}</div>
         </div>
-    )
+    )*/
+}
+//i need a drawer...
+
+type DocumentStageProps = {
+    open: boolean,
+    setOpening: () => void,
+    setClosing: () => void,
 }
 
-/*"use server";
+function DocumentStage(props: DocumentStageProps) {
+    const {open, setOpening, setClosing} = props;
 
-export default async function ElementPage({params}: {params: Promise<{atomic_number: string}>}) {
-    const {atomic_number} = await params
-    return <div>{atomic_number}</div>
-}*/
+    const overallStyle: CSSProperties = {
+        position: "fixed",
+        left: "0",
+        right: "0",
+        bottom: "0",
+        height: "70vh",
+        backgroundColor: "white"
+    }
 
-/*"use client";
+    const closedStyle: CSSProperties = {
+        transform: "translateY(100%)",
+        //translate: "0% 100%",
+        pointerEvents: "none" as PointerEvents,
+    }
 
-import {useRouter} from "next/navigation";
-
-export default function ElementPage() {
-    const router = useRouter()
+    const openStyle: CSSProperties = {
+        transform: "translateY(0%)",
+        //translate: "0% 100%",
+        pointerEvents: "auto" as PointerEvents
+    }
 
     return (
-        <div>
-            {router.query.atomicNumber}
+        <div style={{...(overallStyle), ...(open ? openStyle : closedStyle)}}>
+
         </div>
     )
-}*/
-
-//general structure
-//lwk just have it blank...? and then have an array of iframes or something
-//i want it to be like card previews or sm
-//like actual archive files in a drawer
+}
