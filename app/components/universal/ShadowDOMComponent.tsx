@@ -3,7 +3,7 @@
 import {ReactNode, useEffect, useRef} from "react";
 
 
-export default function ShadowDOMComponent({htmlContent, children}: {htmlContent: string, children: ReactNode[] | ReactNode}) {
+export default function ShadowDOMComponent({htmlContent, children}: {htmlContent: string, children?: ReactNode[] | ReactNode | undefined | null}) {
     const hostRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
