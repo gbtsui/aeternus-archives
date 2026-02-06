@@ -1,0 +1,14 @@
+@keyframes stickyNoteExit {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 100%;
+    }
+    80% {
+        transform: translateX(10vw) translateY(70vh);
+        opacity: 90%;
+    }
+    100% {
+        transform: translateX(11vw) translateY(75vh);
+        opacity: 0;
+    }
+}

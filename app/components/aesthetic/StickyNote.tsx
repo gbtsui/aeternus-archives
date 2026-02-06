@@ -1,31 +1,37 @@
 "use client";
 
 import {CSSProperties, ReactNode, useEffect, useState} from "react";
+import "@/app/stylesheets/stickyNote.css"
 
 type StickyNoteProps = {
     children?: ReactNode,
     tilt?: number; //if unprovided, will be randomized
 }
 
+
 export default function StickyNote(props: StickyNoteProps) {
     const {children} = props;
     const [tilt, setTilt] = useState(props.tilt || 0);
+    const [visible, setVisible] = useState(true);
 
     useEffect(() => {
-        const funny_async_function = async () =>  {if (!props.tilt) setTilt(Math.round((Math.random() - 0.5) * 20) ?? 3)}
+        const funny_async_function = async () =>  {if (!props.tilt) setTilt(Math.round((Math.random() - 0.5) * 20))}
 
         funny_async_function();
         return () => {}
     }, [setTilt, props.tilt]);
 
     const harryStyles: CSSProperties = {
-        rotate: `${tilt}deg`,
+        transform: `rotate(${tilt}deg)`,
+        animationDuration: "300ms",
+        cursor: "pointer",
     }
 
     return (
-        <div className={"absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col"} style={harryStyles}>
+        <div className={"absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto"} style={{...harryStyles, ...(visible ?{}:{animationName: "stickyNoteExit", animationFillMode: "forwards"})}} onClick={() => setVisible(false)}>
+
             {children}
-            <div>
+            <div className={"cursor-pointer"}>
                 {tilt}deg
             </div>
         </div>
