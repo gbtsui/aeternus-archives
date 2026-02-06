@@ -1,9 +1,9 @@
 "use client";
 
-import {useEffect, useRef} from "react";
+import {ReactNode, useEffect, useRef} from "react";
 
 
-export default function ShadowDOMComponent({htmlContent}: {htmlContent: string}) {
+export default function ShadowDOMComponent({htmlContent, children}: {htmlContent: string, children: ReactNode[] | ReactNode}) {
     const hostRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -15,5 +15,8 @@ export default function ShadowDOMComponent({htmlContent}: {htmlContent: string})
         shadowRoot.innerHTML = htmlContent;
     }, [htmlContent]);
 
-    return <div ref={hostRef}/>
+    return <div ref={hostRef}>{children}</div>
 }
+
+//do i have to use HTMLContent?
+

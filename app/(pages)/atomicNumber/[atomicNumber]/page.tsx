@@ -7,9 +7,19 @@ import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDoc
 
 
 
-export default function ElementPage({params} : {params: Promise<{atomicNumber: number}>}) {
+export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
     const {atomicNumber} = use(params)
-    const elementData = periodicTableElementsBasicData[atomicNumber]
+    const atomicNumberAsNumber = Number(atomicNumber)
+
+    if (!Number.isInteger(atomicNumberAsNumber)) {
+        return <div>Error! Invalid element. Maybe I have not added it yet, or maybe it is an impossible atomic number...</div>
+    }
+
+    const elementData = periodicTableElementsBasicData[atomicNumberAsNumber];
+    if (!elementData) {
+        return <div>Element data not found.</div>
+    }
+
     const archiveDocuments = elementData.archiveDocuments
 
     //refactor this iframe into a separate component at some point?
@@ -26,7 +36,7 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: n
      */
     return (
         <div>
-            {archiveDocuments.map((archiveDoc, index) => <ArchiveDocumentContainer data={archiveDoc} key={index} atomicNumber={atomicNumber}/>)}
+            {archiveDocuments.map((archiveDoc, index) => <ArchiveDocumentContainer data={archiveDoc} key={index} atomicNumber={atomicNumberAsNumber}/>)}
             <div>{archiveDocuments.map((archiveDoc, index) => <div key={index}>{JSON.stringify(archiveDoc)}</div>)}</div>
         </div>
     )
