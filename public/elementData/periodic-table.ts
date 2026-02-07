@@ -10,7 +10,8 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         row: 1,
         characterName: "???",
         archiveDocuments: [
-            {filename: "default.html", title: "default"}
+            {filename: "default.html", title: "default"},
+            {filename: "default.html", title: "default 2"}
         ]
     },
 
