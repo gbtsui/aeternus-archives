@@ -1,0 +1,19 @@
+.card {
+    transform: translateX(calc(var(--i) * 8.5vw)) scale(0.97);
+    z-index: calc(100 + var(--i));
+
+    transition: transform 180ms ease, z-index 0ms;
+}
+
+.card:hover {
+    transform: translateX(calc(var(--i) * 8.5vw)) scale(1.03) translateY(-4vh);
+    z-index: 200;
+}
+
+.card:hover ~ .card {
+    transform: translateX(calc(var(--i) * 16vw)) translateY(1vh) scale(0.90)
+}
+
+.card:hover ~ .card:not(:hover) {
+    filter: brightness(0.9);
+}

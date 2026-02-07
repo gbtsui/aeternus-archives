@@ -78,11 +78,11 @@ export default function DocumentStage(props: DocumentStageProps) {
             </div>
 
             {/*this part is going to be where the folders actually will be residing!*/}
-            <div className={"relative w-[25vh] h-[80%] top-[4vh] left-[2vw] perspective-midrange"}>
+            <div className={"relative w-[25vh] h-[80%] top-[4vh] perspective-midrange"}>
                 {archiveDocuments.map((archiveDoc, index) => {
 
                     return (
-                        <DocumentFolder key={index} index={index} archiveDocument={archiveDoc}/>
+                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc}/>
                     )
                 })}
             </div>
