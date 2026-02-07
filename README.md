@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aeternus archives
+A web-based interactive-ish lore document archive for my ongoing game/writing/art project Acausality.
 
-## Getting Started
+## Why...?
 
-First, run the development server:
+So, I wrote a ton of lore for my characters. Like an unreasonable amount. Unfortunately I ended up not writing all of it down, and a lot of it is in a format where it's like diagetic internal in-universe documents. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I saw CF Flagship was happening, and I figured, hey, what if I did this and finally got all my stuff together?
+And so I did. Admittedly I don't have that many archive files written at the moment - I only have 3 characters complete to be honest.
+But, Aeternus Archives provides me with a nice framework to host and store formatted pieces of writing that I can later use to loredrop and stuff without having to re-explain every time.
+Also gives me an excuse to learn how to design documents and draw more of my characters.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Similarly, it's helping me a lot with CSS and HTML design. I've done a lot of web dev in my life but all of my sites and apps look terrible.
+They're ugly. So hopefully this gets me better at the art of CSS and the science of HTML.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Basic Summary
+Each character I write is based on an element. Each character also exists within the same universe spanning 1500 years. And as such, the style of documents are going to span all manner of chronological and physical formats.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Hence why it's organized as a periodic table. Admittedly, I do... have more characters, but right now I only have a few elements up templated since they're the most finished ones.
 
-## Learn More
+## Mechanism (or at least my architectural plan as of now)
 
-To learn more about Next.js, take a look at the following resources:
+The core of this system is basically isolated embedded HTML files that each have their own styling and content, and together they create a cohesive image of who a character is.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stack
+|  Technology  |    Role    |
+|:------------:|:----------:|
+|   Next.js    | Framework  |
+|    React     |  Frontend  |
+| TailwindCSS  |  Styling   |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To be honest this is an almost entirely frontend project. 
