@@ -2,6 +2,7 @@ import {CSSProperties, Dispatch, SetStateAction, useEffect, useRef} from "react"
 import {Property} from "csstype";
 import PointerEvents = Property.PointerEvents;
 import {ArchiveDocumentMetadata} from "@/app/schema";
+import DocumentFolder from "@/app/components/archive-pages/DocumentFolder";
 
 export type StageState = "closed" | "opening" | "open" | "closing"
 
@@ -65,6 +66,8 @@ export default function DocumentStage(props: DocumentStageProps) {
         else if (state === "closed") setState("opening");
     }
 
+    console.log(archiveDocuments)
+
     return (
         <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}
              className={"border-gray-700 border-[0.5rem] border-r-0"}
@@ -74,13 +77,12 @@ export default function DocumentStage(props: DocumentStageProps) {
                 <div className={"absolute top-[-2.75vh] text-gray-300"}>{state}</div>
             </div>
 
-            <div className={""}>
+            {/*this part is going to be where the folders actually will be residing!*/}
+            <div className={"relative w-[25vh] h-[80%] top-[4vh] left-[2vw] perspective-midrange"}>
                 {archiveDocuments.map((archiveDoc, index) => {
 
                     return (
-                        <div key={index} style={{"--i": index} as CSSProperties}>
-
-                        </div>
+                        <DocumentFolder key={index} index={index} archiveDocument={archiveDoc}/>
                     )
                 })}
             </div>
