@@ -2,9 +2,25 @@
     transform: translateX(calc(var(--i) * 8.5vw)) scale(0.97);
     z-index: calc(100 + var(--i));
 
-    transition: transform 180ms ease, z-index 0ms;
+    transition: transform 180ms ease, filter 300ms ease, z-index 0ms;
 }
 
+.card-hovering {
+    transform: translateX(calc(var(--i) * 8.5vw)) scale(1.03) translateY(-4vh);
+    z-index: 200;
+}
+
+.card-before {
+    transform: translateX(calc(var(--i) * 4vw)) translateY(1vh) scale(0.90);
+    filter: brightness(0.9);
+}
+
+.card-after {
+    transform: translateX(calc(var(--i) * 13vw)) translateY(1vh) scale(0.90);
+    filter: brightness(0.9);
+}
+
+/*
 .card:hover {
     transform: translateX(calc(var(--i) * 8.5vw)) scale(1.03) translateY(-4vh);
     z-index: 200;
@@ -17,3 +33,4 @@
 .card:hover ~ .card:not(:hover) {
     filter: brightness(0.9);
 }
+ */

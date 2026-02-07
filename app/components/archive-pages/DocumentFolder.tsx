@@ -1,20 +1,24 @@
 import {ArchiveDocumentMetadata} from "@/app/schema";
-import {CSSProperties} from "react";
+import {CSSProperties, Dispatch, SetStateAction} from "react";
 
 import "@/app/stylesheets/folders.css"
 
 type DocumentFolderProps = {
     archiveDocument: ArchiveDocumentMetadata;
     index: number;
+    currentHoveredIndex: null|number;
+    setCurrentHoveredIndex: Dispatch<SetStateAction<number|null>>;
 }
 
 export default function DocumentFolder(props: DocumentFolderProps) {
-    const {archiveDocument, index} = props;
+    const {archiveDocument, index, currentHoveredIndex, setCurrentHoveredIndex} = props;
 
 
     return (
-        <div className={"absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80 hover:cursor-pointer card"}
+        <div className={`absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80 hover:cursor-pointer card ${currentHoveredIndex === index && "card-hovering"} ${currentHoveredIndex !== null && currentHoveredIndex > index && "card-before"} ${currentHoveredIndex !== null && currentHoveredIndex < index && "card-after"}`}
             style={{"--i": index} as CSSProperties}
+             onPointerOver={() => setCurrentHoveredIndex(index)}
+             onPointerLeave={() => setCurrentHoveredIndex(null)}
         >
 
             <div className={"relative inset-0 w-full h-full bg-amber-200 shadow-4xl rounded-l-md "}>

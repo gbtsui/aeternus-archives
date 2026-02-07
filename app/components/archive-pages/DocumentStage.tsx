@@ -1,4 +1,4 @@
-import {CSSProperties, Dispatch, SetStateAction, useEffect, useRef} from "react";
+import {CSSProperties, Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
 import {Property} from "csstype";
 import PointerEvents = Property.PointerEvents;
 import {ArchiveDocumentMetadata} from "@/app/schema";
@@ -43,6 +43,8 @@ export default function DocumentStage(props: DocumentStageProps) {
 
     const ref = useRef<HTMLDivElement | null>(null)
 
+    const [hoveredIndex, setHoveredIndex] = useState<null|number>(0);
+
     useEffect(() => {
         const element = ref.current
         if (!element) return
@@ -82,7 +84,7 @@ export default function DocumentStage(props: DocumentStageProps) {
                 {archiveDocuments.map((archiveDoc, index) => {
 
                     return (
-                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc}/>
+                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc} currentHoveredIndex={hoveredIndex} setCurrentHoveredIndex={setHoveredIndex}/>
                     )
                 })}
             </div>
