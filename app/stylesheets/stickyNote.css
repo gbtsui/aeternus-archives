@@ -1,14 +1,19 @@
 @keyframes stickyNoteExit {
     0% {
-        transform: translateX(0) translateY(0);
+        transform: translateX(0) translateY(0) rotate(0deg);
         opacity: 100%;
     }
     80% {
-        transform: translateX(10vw) translateY(70vh);
-        opacity: 90%;
+        transform: translateX(10vw) translateY(70vh) rotate(60deg);
+        opacity: 50%;
     }
     100% {
-        transform: translateX(11vw) translateY(75vh);
+        transform: translateX(11vw) translateY(75vh) rotate(65deg);
         opacity: 0;
     }
+}
+
+.exit {
+    animation: stickyNoteExit 1000ms forwards;
+    pointer-events: none
 }

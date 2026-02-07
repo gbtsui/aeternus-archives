@@ -25,10 +25,11 @@ export default function StickyNote(props: StickyNoteProps) {
         transform: `rotate(${tilt}deg)`,
         animationDuration: "300ms",
         cursor: "pointer",
+        overflow: "hidden",
     }
 
     return (
-        <div className={"absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto"} style={{...harryStyles, ...(visible ?{}:{animationName: "stickyNoteExit", animationFillMode: "forwards"})}} onClick={() => setVisible(false)}>
+        <div className={`absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto z-10 ${visible ? "" : "exit"} `} style={harryStyles} onClick={() => setVisible(false)}>
 
             {children}
             <div className={"cursor-pointer"}>
