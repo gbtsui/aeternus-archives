@@ -3,6 +3,7 @@ import {Property} from "csstype";
 import PointerEvents = Property.PointerEvents;
 import {ArchiveDocumentMetadata} from "@/app/schema";
 import DocumentFolder from "@/app/components/archive-pages/DocumentFolder";
+import {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
 
 export type StageState = "closed" | "opening" | "open" | "closing"
 
@@ -11,11 +12,12 @@ type DocumentStageProps = {
     setState: Dispatch<SetStateAction<StageState>>,
     archiveDocuments: ArchiveDocumentMetadata[],
     setActiveDocument: Dispatch<SetStateAction<ArchiveDocumentMetadata | null>>,
-    activeDocument: ArchiveDocumentMetadata | null
+    activeDocument: ArchiveDocumentMetadata | null,
+    setLiftedFolder: Dispatch<SetStateAction<AnimatedFolderLiftState>>
 }
 
 export default function DocumentStage(props: DocumentStageProps) {
-    const {state, setState, archiveDocuments, setActiveDocument} = props;
+    const {state, setState, archiveDocuments, activeDocument, setActiveDocument, setLiftedFolder} = props;
 
     const overallStyle: CSSProperties = {
         position: "fixed",
@@ -45,6 +47,15 @@ export default function DocumentStage(props: DocumentStageProps) {
 
     const [hoveredIndex, setHoveredIndex] = useState<null|number>(0);
 
+    const onSelectHandler: (archiveDocument: ArchiveDocumentMetadata, rect: DOMRect) => void = (doc, rect) => {
+        setState("closing")
+        setLiftedFolder({
+            doc,
+            originRect: rect,
+            phase: "lifting"
+        })
+    }
+
     useEffect(() => {
         const element = ref.current
         if (!element) return
@@ -63,7 +74,6 @@ export default function DocumentStage(props: DocumentStageProps) {
     }, [setState])
 
     const changeState = () => {
-        console.log("changeState called")
         if (state === "open") setState("closing")
         else if (state === "closed") setState("opening");
     }
@@ -84,7 +94,7 @@ export default function DocumentStage(props: DocumentStageProps) {
                 {archiveDocuments.map((archiveDoc, index) => {
 
                     return (
-                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc} currentHoveredIndex={hoveredIndex} setCurrentHoveredIndex={setHoveredIndex}/>
+                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc} activeDocument={activeDocument} currentHoveredIndex={hoveredIndex} setCurrentHoveredIndex={setHoveredIndex} onSelect={onSelectHandler}/>
                     )
                 })}
             </div>

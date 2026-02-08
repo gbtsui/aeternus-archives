@@ -7,6 +7,7 @@ import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDoc
 import {ArchiveDocumentMetadata} from "@/app/schema";
 import StickyNote from "@/app/components/aesthetic/StickyNote";
 import DocumentStage, {StageState} from "@/app/components/archive-pages/DocumentStage";
+import AnimatedDocumentFolder, {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
 
 
 export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
@@ -15,7 +16,7 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
 
     const [activeDocument, setActiveDocument] = useState<ArchiveDocumentMetadata | null>(null)
     const [stageState, setStageState] = useState<StageState>("open")
-
+    const [liftedFolder, setLiftedFolder] = useState<AnimatedFolderLiftState>(null)
 
     if (!Number.isInteger(atomicNumberAsNumber)) {
         return <div>Error! Invalid element. Maybe I have not added it yet, or maybe it is an impossible atomic number...</div>
@@ -37,11 +38,16 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
             <StickyNote>
                 whats up gang
             </StickyNote>
-            <DocumentStage state={stageState} setState={setStageState} setActiveDocument={setActiveDocument} activeDocument={activeDocument} archiveDocuments={archiveDocuments} />
+            <DocumentStage state={stageState} setState={setStageState} setActiveDocument={setActiveDocument} activeDocument={activeDocument} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
                 <div className={"text-gray-700 text-3xl text-center"}>
                     archive document reader
                 </div>
+                {
+                    liftedFolder && (
+                        <AnimatedDocumentFolder onDocked={() => setLiftedFolder(s => s && {...s, phase: "docked"})} onOpened={() => setLiftedFolder(state => state && {...state, phase: "opening"})} state={liftedFolder}/>
+                    )
+                }
             </div>
 
             {activeDocument && <ArchiveDocumentContainer data={activeDocument} atomicNumber={atomicNumberAsNumber}/>}

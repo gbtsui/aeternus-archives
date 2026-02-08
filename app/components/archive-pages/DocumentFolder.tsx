@@ -1,5 +1,5 @@
 import {ArchiveDocumentMetadata} from "@/app/schema";
-import {CSSProperties, Dispatch, SetStateAction} from "react";
+import {CSSProperties, Dispatch, MouseEventHandler, SetStateAction} from "react";
 
 import "@/app/stylesheets/folders.css"
 
@@ -8,17 +8,26 @@ type DocumentFolderProps = {
     index: number;
     currentHoveredIndex: null|number;
     setCurrentHoveredIndex: Dispatch<SetStateAction<number|null>>;
+    onSelect: (archiveDocument: ArchiveDocumentMetadata, rect: DOMRect) => void;
+    activeDocument: ArchiveDocumentMetadata | null;
 }
 
 export default function DocumentFolder(props: DocumentFolderProps) {
-    const {archiveDocument, index, currentHoveredIndex, setCurrentHoveredIndex} = props;
+    const {archiveDocument, activeDocument, index, currentHoveredIndex, setCurrentHoveredIndex, onSelect} = props;
 
+    const clickHandler: MouseEventHandler<HTMLDivElement> = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        onSelect(archiveDocument, rect)
+    }
+
+    if (archiveDocument === activeDocument) return null
 
     return (
         <div className={`absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80 hover:cursor-pointer card ${currentHoveredIndex === index && "card-hovering"} ${currentHoveredIndex !== null && currentHoveredIndex > index && "card-before"} ${currentHoveredIndex !== null && currentHoveredIndex < index && "card-after"}`}
             style={{"--i": index} as CSSProperties}
              onPointerOver={() => setCurrentHoveredIndex(index)}
              onPointerLeave={() => setCurrentHoveredIndex(null)}
+            onClick={clickHandler}
         >
 
             <div className={"relative inset-0 w-full h-full bg-amber-200 shadow-4xl rounded-l-md "}>
