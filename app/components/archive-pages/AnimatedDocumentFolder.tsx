@@ -1,7 +1,7 @@
 "use client";
 
 import {ArchiveDocumentMetadata} from "@/app/schema";
-import {CSSProperties} from "react";
+import {CSSProperties, TransitionEventHandler} from "react";
 
 type AnimatedDocumentFolderProps = {
     state: AnimatedFolderLiftState,
@@ -12,7 +12,7 @@ type AnimatedDocumentFolderProps = {
 export type AnimatedFolderLiftState = null | {
     doc: ArchiveDocumentMetadata
     originRect: DOMRect,
-    phase: "lifting" | "opening" | "docked" //RAHHHH FINITE STATE MACHINE MY BELOVED???
+    phase: "spawned" | "lifting" | "opening" | "docked" //RAHHHH FINITE STATE MACHINE MY BELOVED???
     //yo lowkenuinely i havent done one of these since godot
 
 }
@@ -27,16 +27,26 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
 
     const style: CSSProperties = {
         position: "fixed",
+        transition: "all 600ms ease",
         top: originRect.top,
         left: originRect.left,
         width: originRect.width,
         height: originRect.height,
-        transition: "all 600ms cubic-bezier"
+        transform: "translateY(0)"
+    }
+
+    const liftingStyle =
+        phase === "lifting" ? {transform: "translateY(-30vh)"} : {}
+
+    const onTransitionEndHandler:  TransitionEventHandler<HTMLDivElement> = (e) => {
+        if (e.propertyName !== "transform") return
+        if (phase === "lifting") onOpened()
     }
 
     return (
         <div className={`absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80`}
-            style={style}
+            style={{...style, ...liftingStyle}}
+             onTransitionEnd={onTransitionEndHandler}
             >
 
             <div className={"relative inset-0 w-full h-full bg-amber-200 shadow-4xl rounded-l-md "}>

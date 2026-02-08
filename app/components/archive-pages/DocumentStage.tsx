@@ -51,7 +51,10 @@ export default function DocumentStage(props: DocumentStageProps) {
         setLiftedFolder({
             doc,
             originRect: rect,
-            phase: "lifting"
+            phase: "spawned"
+        })
+        requestAnimationFrame(() => {
+            setLiftedFolder(s => s && { ...s, phase: "lifting" })
         })
     }
 
