@@ -3,8 +3,6 @@
 import {use,useState} from "react";
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
 //import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
-import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
-import {ArchiveDocumentMetadata} from "@/app/schema";
 import StickyNote from "@/app/components/aesthetic/StickyNote";
 import DocumentStage, {StageState} from "@/app/components/archive-pages/DocumentStage";
 import AnimatedDocumentFolder, {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
@@ -14,7 +12,8 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
     const {atomicNumber} = use(params)
     const atomicNumberAsNumber = Number(atomicNumber)
 
-    const [activeDocument, setActiveDocument] = useState<ArchiveDocumentMetadata | null>(null)
+    //const [activeDocument, setActiveDocument] = useState<ArchiveDocumentMetadata | null>(null)
+    //might lwk deprecate since liftedFolder now includes activeDocument... it was a good run while i was using it
     const [stageState, setStageState] = useState<StageState>("open")
     const [liftedFolder, setLiftedFolder] = useState<AnimatedFolderLiftState>(null)
 
@@ -38,7 +37,7 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
             <StickyNote>
                 whats up gang
             </StickyNote>
-            <DocumentStage state={stageState} setState={setStageState} setActiveDocument={setActiveDocument} activeDocument={activeDocument} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder}/>
+            <DocumentStage state={stageState} setState={setStageState} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder} liftedFolder={liftedFolder}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
                 <div className={"text-gray-700 text-3xl text-center"}>
                     archive document reader
@@ -50,8 +49,10 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
                 }
             </div>
 
+            {/*
             {activeDocument && <ArchiveDocumentContainer data={activeDocument} atomicNumber={atomicNumberAsNumber}/>}
             {activeDocument ? <div>{activeDocument.toString()}</div> : <div>null</div>}
+            */}
         </div>
     )
 

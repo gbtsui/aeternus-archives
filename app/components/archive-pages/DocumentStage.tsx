@@ -11,13 +11,12 @@ type DocumentStageProps = {
     state: StageState,
     setState: Dispatch<SetStateAction<StageState>>,
     archiveDocuments: ArchiveDocumentMetadata[],
-    setActiveDocument: Dispatch<SetStateAction<ArchiveDocumentMetadata | null>>,
-    activeDocument: ArchiveDocumentMetadata | null,
-    setLiftedFolder: Dispatch<SetStateAction<AnimatedFolderLiftState>>
+    setLiftedFolder: Dispatch<SetStateAction<AnimatedFolderLiftState | null>>
+    liftedFolder: AnimatedFolderLiftState | null,
 }
 
 export default function DocumentStage(props: DocumentStageProps) {
-    const {state, setState, archiveDocuments, activeDocument, setActiveDocument, setLiftedFolder} = props;
+    const {state, setState, archiveDocuments, setLiftedFolder, liftedFolder} = props;
 
     const overallStyle: CSSProperties = {
         position: "fixed",
@@ -94,7 +93,7 @@ export default function DocumentStage(props: DocumentStageProps) {
                 {archiveDocuments.map((archiveDoc, index) => {
 
                     return (
-                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc} activeDocument={activeDocument} currentHoveredIndex={hoveredIndex} setCurrentHoveredIndex={setHoveredIndex} onSelect={onSelectHandler}/>
+                        <DocumentFolder key={index} index={index + 1} archiveDocument={archiveDoc} currentHoveredIndex={hoveredIndex} setCurrentHoveredIndex={setHoveredIndex} onSelect={onSelectHandler} liftedFolder={liftedFolder}/>
                     )
                 })}
             </div>

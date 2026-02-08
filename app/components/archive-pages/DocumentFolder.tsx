@@ -2,6 +2,7 @@ import {ArchiveDocumentMetadata} from "@/app/schema";
 import {CSSProperties, Dispatch, MouseEventHandler, SetStateAction} from "react";
 
 import "@/app/stylesheets/folders.css"
+import {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
 
 type DocumentFolderProps = {
     archiveDocument: ArchiveDocumentMetadata;
@@ -9,18 +10,18 @@ type DocumentFolderProps = {
     currentHoveredIndex: null|number;
     setCurrentHoveredIndex: Dispatch<SetStateAction<number|null>>;
     onSelect: (archiveDocument: ArchiveDocumentMetadata, rect: DOMRect) => void;
-    activeDocument: ArchiveDocumentMetadata | null;
+    liftedFolder: AnimatedFolderLiftState
 }
 
 export default function DocumentFolder(props: DocumentFolderProps) {
-    const {archiveDocument, activeDocument, index, currentHoveredIndex, setCurrentHoveredIndex, onSelect} = props;
+    const {archiveDocument, liftedFolder, index, currentHoveredIndex, setCurrentHoveredIndex, onSelect} = props;
 
     const clickHandler: MouseEventHandler<HTMLDivElement> = (e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         onSelect(archiveDocument, rect)
     }
 
-    if (archiveDocument === activeDocument) return null
+    if (archiveDocument === liftedFolder?.doc) return null
 
     return (
         <div className={`absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80 hover:cursor-pointer card ${currentHoveredIndex === index && "card-hovering"} ${currentHoveredIndex !== null && currentHoveredIndex > index && "card-before"} ${currentHoveredIndex !== null && currentHoveredIndex < index && "card-after"}`}
