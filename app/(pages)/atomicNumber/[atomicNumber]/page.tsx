@@ -44,7 +44,16 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
                 </div>
                 {
                     liftedFolder && (
-                        <AnimatedDocumentFolder onDocked={() => setLiftedFolder(s => s && {...s, phase: "docked"})} onOpened={() => setLiftedFolder(state => state && {...state, phase: "opening"})} state={liftedFolder}/>
+                        <AnimatedDocumentFolder
+                            onDocked={() => {
+                                setLiftedFolder(s => s && {...s, phase: "docked"});
+                                console.log("docked")
+                            }}
+                            onOpened={() => {
+                                setLiftedFolder(state => state && {...state, phase: "opening"})
+                                console.log("opened")
+                            }}
+                            state={liftedFolder}/>
                     )
                 }
             </div>

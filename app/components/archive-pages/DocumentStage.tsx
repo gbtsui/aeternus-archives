@@ -80,8 +80,6 @@ export default function DocumentStage(props: DocumentStageProps) {
         else if (state === "closed") setState("opening");
     }
 
-    console.log(archiveDocuments)
-
     return (
         <div ref={ref} style={{...(overallStyle), ...(state === "opening" || state === "open" ? openStyle : closedStyle)}}
              className={"border-gray-700 border-[0.5rem] border-r-0"}
