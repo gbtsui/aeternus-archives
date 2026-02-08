@@ -3,15 +3,17 @@
 import {periodicTableElementsBasicData} from "@/public/elementData/periodic-table";
 import {ElementBasicMetadata} from "@/app/schema";
 import ElementBlock from "@/app/components/periodic-table/ElementBlock";
-import {PannableArea, usePannableContext} from "@/app/components/universal/PannableArea";
+import {PannableArea} from "@/app/components/universal/PannableArea";
 
 type PeriodicTableProps = {
     visible: boolean;
 }
-
+/*
 const initializeTable = () => {
-
+//this function is just gonna play an animation when first loaded in with the various elements btw.
 }
+
+ */
 function shuffle(array: unknown[]) {
     let currentIndex = array.length;
 
@@ -66,13 +68,6 @@ export default function PeriodicTable(props: PeriodicTableProps) {
                     return <ElementBlock elementData={element} key={element.atomicNumber}/>
                 })}
             </div>
-        <DidDragChecker/>
         </PannableArea>
     )
-}
-
-const DidDragChecker = () => {
-
-    const {didDrag} = usePannableContext()
-    return <div className={"text-7xl"}>{didDrag ? "true" : "false"}</div>
 }
