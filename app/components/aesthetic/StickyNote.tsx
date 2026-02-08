@@ -6,11 +6,17 @@ import "@/app/stylesheets/stickyNote.css"
 type StickyNoteProps = {
     children?: ReactNode,
     tilt?: number; //if unprovided, will be randomized
+    position?: {
+        top?: string,
+        left?: string,
+        right?: string,
+        bottom?: string,
+    }
 }
 
 
 export default function StickyNote(props: StickyNoteProps) {
-    const {children} = props;
+    const {children, position} = props;
     const [tilt, setTilt] = useState(props.tilt || 0);
     const [visible, setVisible] = useState(true);
     const [mounted, setMounted] = useState(true);
@@ -30,6 +36,10 @@ export default function StickyNote(props: StickyNoteProps) {
         animationDuration: "300ms",
         cursor: "pointer",
         overflow: "hidden",
+        top: position?.top,
+        left: position?.left,
+        right: position?.right,
+        bottom: position?.bottom,
     }
 
     if (!mounted) return null;

@@ -38,6 +38,13 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
             <StickyNote>
                 pick a folder to get started!
             </StickyNote>
+            <StickyNote position={{top: "10vh", right: "20vw"}}>
+                please remove stickynotes before operating the document reader, thanks :)
+
+                <div>
+                    - bookkeeper
+                </div>
+            </StickyNote>
             <DocumentStage state={stageState} setState={setStageState} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder} liftedFolder={liftedFolder}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
                 <div className={"text-gray-700 text-3xl text-center"}>
