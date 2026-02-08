@@ -54,12 +54,12 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     //also panning and such
     //should just be a wrapper around ShadowDOMComponent?
     return (
-        <div> {/*full container?*/}
+        <div className={"absolute z-[201] w-[80vw] h-[80vh]"}> {/*full container?*/}
             <div> {/*viewport frame - fixed size...*/}
                 <div>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
                     {/*i should break the camera into its own component perhaps?*/}
                     {/*shadowDOM wrapper goes here ig*/}
-                    <div style={{contain: "initial"}} className={"h-1/2 bg-white text-black"}>
+                    <div style={{contain: "initial"}} className={"h-[100%] bg-white text-black"}>
                         <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
                     </div>
                 </div>

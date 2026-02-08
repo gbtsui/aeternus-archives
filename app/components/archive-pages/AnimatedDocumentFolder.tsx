@@ -27,13 +27,14 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
 
     const style: CSSProperties = {
         position: "fixed",
-        transition: "all 600ms ease",
+        transition: "transform 600ms ease, top 600ms ease, right 600ms ease, left 600ms ease",
 
         width: originRect.width,
         height: originRect.height,
 
         top: originRect.top,
-        left: originRect.left,
+        left: phase !== "docked" ? originRect.left : undefined,
+        right: "auto",
         transform: "translateY(0)"
         //some parts moved to openedFolderStyle btwbtw
     }
@@ -42,31 +43,40 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
         phase === "lifting" ? {transform: "translateY(-30vh)"} : {}
 
     const openedFolderFlapStyle =
-        phase === "opening" ? {transform: "rotateY(150deg) translateX(-22vh) translateY(0.67vh)", transition: "all 300ms ease"} : {transform: "rotateY(0deg) translateX(0)",  transition: "all 300ms ease"}
+        phase === "opening" ? {transform: "rotateY(150deg) translateX(-22vh) translateY(0.67vh)", transition: "all 500ms ease"} : {transform: "rotateY(0deg) translateX(0)",  transition: "all 500ms ease"}
 
     const openedFolderStyle =
         phase === "opening" ? {
             top: "50%",
             left: "50%",
-            transform: "translate(-50%, -50%)"
+            right: "auto",
+            transform: "translate(-50%, -50%)",
+            transition: "all 1s ease"
         } : {
-
-            //default
+        //default
         }
+    const dockedFolderStyle =
+        phase === "docked" ? {
+            left: "auto",
+            right: "-7vw",
+            transform: "translateX(0) translateY(0)",
+            //transform: "translateX(70vw) translateY(-50%)"
+        } : {}
 
     const onTransitionEndHandler:  TransitionEventHandler<HTMLDivElement> = (e) => {
         if (e.propertyName !== "transform") return
         if (phase === "lifting") onOpened()
+        if (phase === "opening") onDocked()
     }
 
     return (
-        <div className={`absolute inset-0 bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80`}
-            style={{...style, ...liftingStyle, ...openedFolderStyle}}
+        <div className={`absolute bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80`}
+            style={{...style, ...liftingStyle, ...openedFolderStyle, ...dockedFolderStyle}}
              onTransitionEnd={onTransitionEndHandler}
             >
 
             <div className={"relative inset-0 w-full h-full bg-amber-200 shadow-4xl rounded-l-md "}>
-                <div className={"absolute top-[1vh] left-0 text-amber-950"}>
+                <div className={"absolute top-[1vh] left-0 select-none text-amber-950"}>
                     <span style={{writingMode: "vertical-rl", transform: "rotate(180deg)"}}>{doc.title}</span>
                 </div>
                 <div className={"absolute bg-amber-100 top-[-0.67vh] right-0 h-full w-[22vh] rounded-tl-md border-l-amber-300 border-l-1 z-[202]"}

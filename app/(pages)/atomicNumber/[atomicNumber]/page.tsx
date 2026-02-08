@@ -6,6 +6,7 @@ import {periodicTableElementsBasicData} from "@/public/elementData/periodic-tabl
 import StickyNote from "@/app/components/aesthetic/StickyNote";
 import DocumentStage, {StageState} from "@/app/components/archive-pages/DocumentStage";
 import AnimatedDocumentFolder, {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
+import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
 
 
 export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
@@ -35,7 +36,7 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
     return (
         <div className={"flex"}>
             <StickyNote>
-                whats up gang
+                pick a folder to get started!
             </StickyNote>
             <DocumentStage state={stageState} setState={setStageState} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder} liftedFolder={liftedFolder}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
@@ -55,6 +56,10 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
                             }}
                             state={liftedFolder}/>
                     )
+                }
+                {
+                    liftedFolder?.doc && (liftedFolder.phase === "opening" || liftedFolder.phase === "docked") &&
+                    <ArchiveDocumentContainer atomicNumber={atomicNumberAsNumber} data={liftedFolder.doc}/>
                 }
             </div>
 
