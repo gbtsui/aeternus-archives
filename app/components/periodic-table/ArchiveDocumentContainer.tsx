@@ -59,8 +59,19 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     //also panning and such
     //should just be a wrapper around ShadowDOMComponent?
     return (
-        <div className={"absolute z-[201] w-[80vw] h-[80vh]"}> {/*full container?*/}
-            <div className={"absolute"}> {/*viewport frame - fixed size...*/}
+        <div className={"absolute z-[201] w-[84vw] h-[85vh] flex items-center"}> {/*full container?*/}
+            <div className={"relative p-[2rem] bg-gray-500 flex flex-col gap-0.5"}> {/*viewport frame - fixed size...*/}
+                <div className={"text-lg text-gray-300"}>
+                    aeternus document viewer - Version One
+                </div>
+                <div className={"text-center flex flex-row justify-between align-middle "}>
+                    <div className={"justify-self-center self-center "}>
+                        Current Document: <span className={"font-bold"}>{props.data.title}</span>
+                    </div>
+                    <div className={"text-center select-none self-center cursor-pointer rounded-md text-xl size-[2.67rem] bg-gray-600 hover:bg-red-500 transition-all m-[0.5rem]"}>
+                        x
+                    </div>
+                </div>
                 <PannableArea style={{
                     width: "80vw",
                     height: "80vh"

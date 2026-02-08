@@ -36,7 +36,7 @@ export default function StickyNote(props: StickyNoteProps) {
 
     return (
         <div
-            className={`absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto z-10 ${visible ? "" : "exit"} `}
+            className={`absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto z-[15] ${visible ? "" : "exit"} `}
             style={harryStyles} onClick={() => setVisible(false)} onAnimationEnd={() => setMounted(false)}>
             {children}
         </div>
