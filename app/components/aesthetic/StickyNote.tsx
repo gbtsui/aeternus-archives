@@ -42,3 +42,5 @@ export default function StickyNote(props: StickyNoteProps) {
         </div>
     )
 }
+
+//thanks renjamin fowler
