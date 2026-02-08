@@ -7,12 +7,13 @@ import StickyNote from "@/app/components/aesthetic/StickyNote";
 import DocumentStage, {StageState} from "@/app/components/archive-pages/DocumentStage";
 import AnimatedDocumentFolder, {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
 import ArchiveDocumentContainer from "@/app/components/periodic-table/ArchiveDocumentContainer";
+import {useRouter} from "next/navigation";
 
 
 export default function ElementPage({params} : {params: Promise<{atomicNumber: string}>}) {
     const {atomicNumber} = use(params)
     const atomicNumberAsNumber = Number(atomicNumber)
-
+    const router = useRouter()
     //const [activeDocument, setActiveDocument] = useState<ArchiveDocumentMetadata | null>(null)
     //might lwk deprecate since liftedFolder now includes activeDocument... it was a good run while i was using it
     const [stageState, setStageState] = useState<StageState>("open")
@@ -35,13 +36,18 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
 
     return (
         <div className={"flex"}>
-            <StickyNote>
+            <div className={"absolute top-[1vh] left-[1vw] w-[6vw] h-[4vh] z-[1000] cursor-pointer bg-gray-800 text-center text-xl"}
+                onClick={() => router.push("/")}
+            >
+                back
+            </div>
+            <StickyNote position={{top: "20vh", right: "10vw"}}>
                 pick a folder to get started!
             </StickyNote>
             <StickyNote position={{top: "10vh", right: "20vw"}}>
                 please remove stickynotes before operating the document reader, thanks :)
 
-                <div>
+                <div className={"text-lg"}>
                     - bookkeeper
                 </div>
             </StickyNote>
