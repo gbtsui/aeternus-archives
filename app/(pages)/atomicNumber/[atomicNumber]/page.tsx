@@ -54,12 +54,18 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
                                 setLiftedFolder(state => state && {...state, phase: "opening"})
                                 console.log("opened")
                             }}
+                            onDisappearing={() => {
+                                setLiftedFolder(state => state && {...state, phase: "disappearing"})
+                            }}
+                            onDisappeared={() => {
+                                setLiftedFolder(null);
+                            }}
                             state={liftedFolder}/>
                     )
                 }
                 {
                     liftedFolder?.doc && (liftedFolder.phase === "opening" || liftedFolder.phase === "docked") &&
-                    <ArchiveDocumentContainer atomicNumber={atomicNumberAsNumber} data={liftedFolder.doc}/>
+                    <ArchiveDocumentContainer atomicNumber={atomicNumberAsNumber} liftedFolder={liftedFolder} setLiftedFolder={setLiftedFolder}/>
                 }
             </div>
 

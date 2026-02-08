@@ -1,12 +1,15 @@
-"use client";
+//"use client";
 
-import {ArchiveDocumentMetadata} from "@/app/schema";
-import {useEffect, useState} from "react";
+//import {ArchiveDocumentMetadata} from "@/app/schema";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
 import {PannableArea} from "@/app/components/universal/PannableArea";
+import {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
 
 type ArchiveDocumentContainerProps = {
-    data: ArchiveDocumentMetadata,
+    //data: ArchiveDocumentMetadata,
+    liftedFolder: AnimatedFolderLiftState,
+    setLiftedFolder: Dispatch<SetStateAction<AnimatedFolderLiftState>>,
     atomicNumber: number
 }
 
@@ -22,7 +25,7 @@ const frameCSS = {
 }
 
 export default function ArchiveDocumentContainer(props: ArchiveDocumentContainerProps) {
-    const {data, atomicNumber} = props;
+    const {liftedFolder, setLiftedFolder, atomicNumber} = props;
     const [htmlData, setHtmlData] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null)
 
@@ -31,10 +34,10 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
 
         async function load() {
             try {
-                const res = await fetch(`/elementData/${atomicNumber}/${data.filename}`)
+                const res = await fetch(`/elementData/${atomicNumber}/${liftedFolder?.doc.filename}`)
 
                 if (!res.ok) {
-                    throw new Error(`failed to load ${data.filename}. check logs pls!!!`)
+                    throw new Error(`failed to load ${liftedFolder?.doc.filename}. check logs pls!!!`)
                 }
 
                 const text = await res.text()
@@ -49,7 +52,7 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
         return () => {
             cancelled = true
         }
-    }, [atomicNumber, data.filename])
+    }, [atomicNumber, liftedFolder?.doc.filename])
 
     if (error) return <div>{error}</div>
     if (!htmlData) return null;
@@ -66,9 +69,12 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                 </div>
                 <div className={"text-center flex flex-row justify-between align-middle "}>
                     <div className={"justify-self-center self-center "}>
-                        Current Document: <span className={"font-bold"}>{props.data.title}</span>
+                        Current Document: <span className={"font-bold"}>{liftedFolder?.doc.title}</span>
                     </div>
-                    <div className={"text-center select-none self-center cursor-pointer rounded-md text-xl size-[2.67rem] bg-gray-600 hover:bg-red-500 transition-all m-[0.5rem]"}>
+                    <div
+                        className={"text-center select-none self-center cursor-pointer rounded-md text-xl size-[2.67rem] bg-gray-600 hover:bg-red-500 transition-all m-[0.5rem]"}
+                        onClick={() => setLiftedFolder(state => state && {...state, phase: "disappearing"})}
+                    >
                         x
                     </div>
                 </div>

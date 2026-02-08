@@ -6,15 +6,16 @@ import {CSSProperties, TransitionEventHandler} from "react";
 type AnimatedDocumentFolderProps = {
     state: AnimatedFolderLiftState,
     onOpened(): void,
-    onDocked(): void
+    onDocked(): void,
+    onDisappearing(): void,
+    onDisappeared(): void,
 }
 
 export type AnimatedFolderLiftState = null | {
     doc: ArchiveDocumentMetadata
     originRect: DOMRect,
-    phase: "spawned" | "lifting" | "opening" | "docked" //RAHHHH FINITE STATE MACHINE MY BELOVED???
+    phase: "spawned" | "lifting" | "opening" | "docked" | "disappearing" //RAHHHH FINITE STATE MACHINE MY BELOVED???
     //yo lowkenuinely i havent done one of these since godot
-
 }
 
 
@@ -23,7 +24,7 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
     if (!props.state) return null;
 
     const {doc, originRect, phase} = props.state;
-    const {onOpened, onDocked} = props
+    const {onOpened, onDocked, onDisappearing, onDisappeared} = props
 
     const style: CSSProperties = {
         position: "fixed",
@@ -63,15 +64,23 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
             //transform: "translateX(70vw) translateY(-50%)"
         } : {}
 
+    const disappearingFolderStyle =
+        phase === "disappearing" ? {
+            left: "auto",
+            right: "-25vw",
+            transform: "translate(0,0)",
+        } : {}
+
     const onTransitionEndHandler:  TransitionEventHandler<HTMLDivElement> = (e) => {
         if (e.propertyName !== "transform") return
         if (phase === "lifting") onOpened()
         if (phase === "opening") onDocked()
+        if (phase === "disappearing") onDisappeared()
     }
 
     return (
         <div className={`absolute bg-amber-100 text-black flex align-center justify-center hover:bg-destructive/80`}
-            style={{...style, ...liftingStyle, ...openedFolderStyle, ...dockedFolderStyle}}
+            style={{...style, ...liftingStyle, ...openedFolderStyle, ...dockedFolderStyle, ...disappearingFolderStyle}}
              onTransitionEnd={onTransitionEndHandler}
             >
 
