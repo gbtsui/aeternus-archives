@@ -71,4 +71,5 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
 //okay so CSS transforms really shouldnt cross shadowDOM boundaries. ts would be bad because it messes up all the internal HTML styling i will work hard on
 //contain: initial should probably get things done...? plus the shadowDOMRoot itself should probably handle it
 //i'll need to debug if it comes up tho.
-//the color of my stool is turning red because my femboy went too hard in bed
+//WHY DID I WRITE THIS????? ^^ ???????
+//kyrie eleison bro what was i on that was a RANCID statement
