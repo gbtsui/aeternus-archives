@@ -11,7 +11,6 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         characterName: "???",
         archiveDocuments: [
             {filename: "default.html", title: "default"},
-            {filename: "default.html", title: "default 2"}
         ]
     },
 
