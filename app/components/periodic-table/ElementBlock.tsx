@@ -3,7 +3,7 @@
 import {ElementBasicMetadata} from "@/app/schema";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
-import {usePannableContext} from "@/app/components/periodic-table/PeriodicTable";
+import {usePannableContext} from "@/app/components/universal/PannableArea";
 
 type ElementBlockProps = {
     elementData: ElementBasicMetadata

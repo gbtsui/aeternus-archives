@@ -11,6 +11,12 @@ import {
 
 type PannableAreaProps = {
     children: ReactNode;
+    style?: PannableAreaPropsStyle;
+}
+
+type PannableAreaPropsStyle = {
+    width?: string,
+    height?: string,
 }
 
 type SillyCoordinates = { x: number, y: number }
@@ -156,8 +162,8 @@ export const PannableArea = (props: PannableAreaProps) => {
                 onPointerLeave={onPointerUp}
                 onWheel={onWheel}
                 style={{
-                    width: "98vw",
-                    height: "98vh",
+                    width: props.style?.width ?? "98vw",
+                    height: props.style?.height ?? "98vh",
                     overflow: "hidden",
                     border: "1px solid black",
                     cursor: panning ? "grabbing" : "grab",

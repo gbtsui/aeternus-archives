@@ -3,10 +3,15 @@
 import {ArchiveDocumentMetadata} from "@/app/schema";
 import {useEffect, useState} from "react";
 import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
+import {PannableArea} from "@/app/components/universal/PannableArea";
 
 type ArchiveDocumentContainerProps = {
     data: ArchiveDocumentMetadata,
     atomicNumber: number
+}
+
+export type ArchiveDocumentContainerState = {
+    phase: "opening" | "expanding" | "reading" | "closing"
 }
 
 const frameCSS = {
@@ -55,14 +60,15 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     //should just be a wrapper around ShadowDOMComponent?
     return (
         <div className={"absolute z-[201] w-[80vw] h-[80vh]"}> {/*full container?*/}
-            <div> {/*viewport frame - fixed size...*/}
-                <div>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
-                    {/*i should break the camera into its own component perhaps?*/}
-                    {/*shadowDOM wrapper goes here ig*/}
+            <div className={"absolute"}> {/*viewport frame - fixed size...*/}
+                <PannableArea style={{
+                    width: "80vw",
+                    height: "80vh"
+                }}>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
                     <div style={{contain: "initial"}} className={"h-[100%] bg-white text-black"}>
                         <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
                     </div>
-                </div>
+                </PannableArea>
             </div>
         </div>
     )
