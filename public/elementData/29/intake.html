@@ -1,0 +1,72 @@
+<style>
+
+    #container {
+        width: 210mm;
+        height: 297mm;
+        background: #fefefe;
+        color: #000;
+    }
+
+    .headingArea {
+        display: grid;
+        grid-template-columns: 25mm 30mm auto;
+        gap: 2mm;
+        width: 130mm;
+        border: 0.5mm solid black;
+        margin: 10mm;
+        height: 25mm;
+    }
+
+    .aeternusLogo {
+        width: 20mm;
+        height: 20mm;
+        margin: 2.5mm;
+    }
+
+    .largeStackedList {
+        display: flex;
+        flex-direction: column;
+        font-size: 6mm;
+    }
+
+    .mediumStackedList {
+        display: flex;
+        flex-direction: column;
+        font-size: 4mm;
+    }
+
+    .portrait {
+        width: 45mm;
+        height: 60mm;
+        margin-left: 5mm;
+        margin-right: 10mm;
+    }
+</style>
+
+<div id="container">
+    <!--- header area thingy --->
+<div style="display: flex; flex-direction: row;">
+    <div class="headingArea">
+        <img src="/assets/universal/aeternus-logo.svg" class="aeternusLogo" alt="aeternus logo"/>
+        <div class="mediumStackedList">
+            <div>
+                Aeternus
+            </div>
+            <div>
+                Division 325
+            </div>
+            <div>
+                Est. 1362NE
+            </div>
+        </div>
+        <div class="mediumStackedList" style="font-size: 8mm">
+            <div>Personnel File</div>
+            <div style="font-family: 'Nothing You Could Do'; font-size: 4mm">
+                last updated: September 6th, 1367
+            </div>
+        </div>
+    </div>
+
+    <img src="/assets/universal/aeternus-logo.svg" alt="portrait" class="portrait"/>
+</div>
+</div>

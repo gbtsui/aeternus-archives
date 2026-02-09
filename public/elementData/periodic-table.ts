@@ -22,7 +22,9 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         column: 11,
         row: 4,
         characterName: "Cuprous",
-        archiveDocuments: []
+        archiveDocuments: [
+            {filename: "intake.html", title: "Intake Personnel Record"}
+        ]
     },
 
     11: {
