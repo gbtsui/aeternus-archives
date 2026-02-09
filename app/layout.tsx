@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Caudex, Edu_TAS_Beginner, Nothing_You_Could_Do, Noto_Serif_HK} from "next/font/google";
+import {Caudex, Edu_TAS_Beginner, Nothing_You_Could_Do, Noto_Serif_HK, Playpen_Sans} from "next/font/google";
 import "./globals.css";
 
 const notoSerif = Noto_Serif_HK({
@@ -26,6 +26,12 @@ const caudex = Caudex({
     weight: "400"
 })
 
+const playpenSans = Playpen_Sans({
+    variable: "--font-playpen-sans",
+    subsets: ["latin", "latin-ext"],
+    weight: "400"
+})
+
 export const metadata: Metadata = {
   title: "AETERNUS ARCHIVES",
   description: "a project by gabriel augustyn",
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} antialiased`}
+        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} ${playpenSans.variable} antialiased`}
       >
         {children}
       </body>
