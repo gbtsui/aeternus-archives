@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Nothing_You_Could_Do, Noto_Serif_HK} from "next/font/google";
+import {Edu_TAS_Beginner, Nothing_You_Could_Do, Noto_Serif_HK} from "next/font/google";
 import "./globals.css";
 
 const notoSerif = Noto_Serif_HK({
@@ -10,6 +10,12 @@ const notoSerif = Noto_Serif_HK({
 
 const nothingYouCouldDo = Nothing_You_Could_Do({
     variable: "--font-nothing-you-could-do",
+    subsets: ["latin"],
+    weight: "400"
+})
+
+const eduTasBeginner = Edu_TAS_Beginner({
+    variable: "--font-eds-tas-beginner",
     subsets: ["latin"],
     weight: "400"
 })
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} antialiased`}
+        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} antialiased`}
       >
         {children}
       </body>

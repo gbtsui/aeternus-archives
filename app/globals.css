@@ -8,8 +8,9 @@
 @theme {
   /*--color-background: var(--background);
   --color-foreground: var(--foreground);*/
-  --font-noto-serif: "Noto Serif HK", serif;
+  --font-noto-serif-hk: "Noto Serif HK", serif;
   --font-nothing-you-could-do: "Nothing You Could Do", sans-serif;
+  --font-edu-tas-beginner: "Edu TAS Beginner", sans-serif;
 }
 
 body {
