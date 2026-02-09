@@ -1,0 +1,274 @@
+<style>
+
+    .container {
+        width: 210mm;
+        height: 297mm;
+        background: #fefefe;
+        color: #000;
+        margin-bottom: 30mm;
+    }
+
+    .headingArea {
+        display: grid;
+        grid-template-columns: 25mm 30mm auto;
+        gap: 2mm;
+        width: 130mm;
+        border: 0.5mm solid black;
+        margin: 10mm;
+        height: 25mm;
+    }
+
+    .aeternusLogo {
+        width: 20mm;
+        height: 20mm;
+        margin: 2.5mm;
+    }
+
+    .largeStackedList {
+        display: flex;
+        flex-direction: column;
+        font-size: 6mm;
+    }
+
+    .mediumStackedList {
+        display: flex;
+        flex-direction: column;
+        font-size: 4mm;
+    }
+
+    .portrait {
+        width: 45mm;
+        height: 60mm;
+        margin-left: 5mm;
+        margin-right: 10mm;
+        margin-top: 10mm;
+        border: 1mm solid black;
+        filter: grayscale(100%);
+    }
+
+    .formPartThingIdk {
+        width: 190mm;
+        margin-left: 5mm;
+        margin-right: 5mm;
+        margin-top: 10mm;
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+    }
+
+    .formPartName {
+        font-size: 3mm;
+        height: 10mm;
+        width: 60mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartNameBig {
+        font-size: 3mm;
+        height: 10mm;
+        width: 150mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartBlock {
+        font-size: 3mm;
+        height: 50mm;
+        width: 170mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartNameSmall {
+        font-size: 3mm;
+        height: 10mm;
+        width: 20mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartDate {
+        font-size: 3mm;
+        height: 10mm;
+        width: 60mm;
+        border: 0.25mm solid black;
+    }
+
+    .smallHandwriting {
+        font-family: 'Nothing You Could Do';
+        font-size: 5mm
+    }
+
+    .eduTasBeginner {
+        font-family: 'Edu TAS Beginner';
+    }
+
+    .signatureBox {
+        font-size: 3mm;
+        border-bottom: 0.5mm solid black;
+        width: 60mm;
+        height: 10mm;
+    }
+
+    .caudex {
+        font-family: 'Caudex'
+    }
+
+    .censored {
+        color: #000;
+        background-color: #000;
+    }
+</style>
+
+<div class="container">
+    <!--- header area thingy --->
+    <div style="display: flex; flex-direction: row;">
+        <div class="headingArea">
+            <img src="/assets/universal/aeternus-logo.svg" class="aeternusLogo" alt="aeternus logo"/>
+            <div class="mediumStackedList">
+                <div>
+                    Aeternus
+                </div>
+                <div>
+                    Division 325
+                </div>
+                <div>
+                    Est. 1362NE
+                </div>
+            </div>
+            <div class="mediumStackedList" style="font-size: 8mm">
+                <div>Personnel File</div>
+                <div style="font-family: 'Nothing You Could Do'; font-size: 4mm">
+                    last updated: July 9th 1367
+                </div>
+            </div>
+        </div>
+
+        <img src="/assets/elemental/20/Ca_portrait_1.PNG" alt="portrait" class="portrait"/>
+    </div>
+    <div class="formPartThingIdk">
+        <div style="display: flex; flex-direction: row;">
+
+            <div class="formPartNameBig">
+                Given Name
+                <div class="smallHandwriting">Karolos "Petros" Axios</div>
+            </div>
+            <div class="formPartNameSmall">
+                Prefix
+                <div class="smallHandwriting">Mr.</div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartName">
+                Codename
+                <div class="smallHandwriting">Petros</div>
+            </div>
+            <div class="formPartNameSmall">
+                Gender
+                <div class="smallHandwriting">M</div>
+            </div>
+            <div class="formPartDate">
+                Date of Birth (Canonical, YYYY-MM-DD)
+                <div class="smallHandwriting">???</div>
+            </div>
+        </div>
+
+        <div class="formPartNameBig">
+            Rank
+            <div class="smallHandwriting">Senior Field Investigative Agent</div>
+        </div>
+        <div class="formPartNameBig">
+            Assignment
+            <div class="smallHandwriting">14th Century Investigative Strikeforce</div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartNameSmall">
+                Height
+                <div class="smallHandwriting">201cm</div>
+            </div>
+            <div class="formPartName">
+                Combat Experience
+                <div class="smallHandwriting">???</div>
+            </div>
+            <div class="formPartDate">
+                Date of Induction
+                <div class="smallHandwriting">1363-02-16</div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartName">
+                Squad Lead
+                <div class="smallHandwriting">N/A</div>
+            </div>
+            <div class="formPartName">
+                Supervisor
+                <div class="smallHandwriting">Bishop Armin Laplace</div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartNameSmall">
+                Resident
+                <div class="smallHandwriting">Yes</div>
+            </div>
+            <div class="formPartNameBig">
+                Address (if not resident)
+                <div class="smallHandwriting">N/A</div>
+            </div>
+        </div>
+
+        <div class="formPartBlock">
+            Motivation for enlistment
+            <div class="smallHandwriting" style="font-size: 2.5mm">
+                (Dictated)
+
+                You know, I was kind of bored. I just woke up one day in this big metal box and figured it was a bit stuffy, so I broke out and went exploring in the city.
+                Ended up in that abandoned castle and just kind of lived there for a while, innit? Some ruffians were using the North tower as a kind of shop to sell some
+                kind of powder. I never really interacted with them, they just left me alone after one of them tried badmouthing me and I broke his jaw. 'Twhere good times, I must say.
+                Local chippy shop was quite good.
+                Eventually, after a couple months, some officers of the law raided the castle and tried arresting me along with the other roadmen, as if I was a common outlaw like them.
+                Well, no! I was but an innocent man who happened to be there. I knocked the daylights out of a few of 'em, but the good bishop happened to drop by coincidentally.
+                Anyways, he talked down the policiers and I ended up here. It's quite nice at 325, I'm enjoying work and leading a team.
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartName">
+                Former Location
+                <div class="smallHandwriting">
+                    Beverstone Castle
+                </div>
+            </div>
+            <div class="formPartName">
+                Role
+                <div class="smallHandwriting">
+                    "Local Unemployed Chap"
+                </div>
+            </div>
+            <div class="formPartName">
+                Former Supervisor
+                <div class="smallHandwriting">
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row; gap: 5mm; margin-top: 10mm;">
+            <div class="signatureBox">
+                Operator Signature
+                <div class="caudex">axios</div>
+            </div>
+            <div class="signatureBox">
+                Supervisor Signature
+                <div class="smallHandwriting">AL</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- to do later:
+
+    - psychological profile
+    - physical exam
+    - operational competence
+
+    -!-->
+</div>
