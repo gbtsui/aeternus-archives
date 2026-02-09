@@ -40,33 +40,140 @@
         height: 60mm;
         margin-left: 5mm;
         margin-right: 10mm;
+        margin-top: 10mm;
+    }
+
+    .formPartThingIdk {
+        width: 190mm;
+        margin-left: 5mm;
+        margin-right: 5mm;
+        margin-top: 10mm;
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+    }
+
+    .formPartName {
+        font-size: 3mm;
+        height: 10mm;
+        width: 60mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartNameBig {
+        font-size: 3mm;
+        height: 10mm;
+        width: 150mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartNameSmall {
+        font-size: 3mm;
+        height: 10mm;
+        width: 20mm;
+        border: 0.25mm solid black;
+    }
+
+    .formPartDate {
+        font-size: 3mm;
+        height: 10mm;
+        width: 60mm;
+        border: 0.25mm solid black;
+    }
+
+    .smallHandwriting {
+        font-family: 'Nothing You Could Do';
+        font-size: 5mm
+    }
+
+    .censored {
+        color: #000;
+        background-color: #000;
     }
 </style>
 
 <div id="container">
     <!--- header area thingy --->
-<div style="display: flex; flex-direction: row;">
-    <div class="headingArea">
-        <img src="/assets/universal/aeternus-logo.svg" class="aeternusLogo" alt="aeternus logo"/>
-        <div class="mediumStackedList">
-            <div>
-                Aeternus
+    <div style="display: flex; flex-direction: row;">
+        <div class="headingArea">
+            <img src="/assets/universal/aeternus-logo.svg" class="aeternusLogo" alt="aeternus logo"/>
+            <div class="mediumStackedList">
+                <div>
+                    Aeternus
+                </div>
+                <div>
+                    Division 325
+                </div>
+                <div>
+                    Est. 1362NE
+                </div>
             </div>
-            <div>
-                Division 325
-            </div>
-            <div>
-                Est. 1362NE
+            <div class="mediumStackedList" style="font-size: 8mm">
+                <div>Personnel File</div>
+                <div style="font-family: 'Nothing You Could Do'; font-size: 4mm">
+                    last updated: September 6th, 1367
+                </div>
             </div>
         </div>
-        <div class="mediumStackedList" style="font-size: 8mm">
-            <div>Personnel File</div>
-            <div style="font-family: 'Nothing You Could Do'; font-size: 4mm">
-                last updated: September 6th, 1367
-            </div>
-        </div>
-    </div>
 
-    <img src="/assets/universal/aeternus-logo.svg" alt="portrait" class="portrait"/>
-</div>
+        <img src="/assets/universal/aeternus-logo.svg" alt="portrait" class="portrait"/>
+    </div>
+    <div class="formPartThingIdk">
+        <div style="display: flex; flex-direction: row;">
+
+            <div class="formPartNameBig">
+                Given Name
+                <div class="smallHandwriting"><span class="censored">-------- -------</span></div>
+            </div>
+            <div class="formPartNameSmall">
+                Prefix
+                <div class="smallHandwriting">Mr.</div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartName">
+                Codename
+                <div class="smallHandwriting">Cuprous</div>
+            </div>
+            <div class="formPartNameSmall">
+                Gender
+                <div class="smallHandwriting">M</div>
+            </div>
+            <div class="formPartDate">
+                Date of Birth (Canonical, YYYY-MM-DD)
+                <div class="smallHandwriting">1350 08 16</div>
+            </div>
+        </div>
+
+        <div class="formPartNameBig">
+            Rank
+            <div class="smallHandwriting">Junior Field Investigative Agent</div>
+        </div>
+        <div class="formPartNameBig">
+            Assignment
+            <div class="smallHandwriting">14th Century Investigative Strikeforce</div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartNameSmall">
+                Height
+                <div class="smallHandwriting">178cm</div>
+            </div>
+            <div class="formPartName">
+                Combat Experience
+                <div class="smallHandwriting">2 years training</div>
+            </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div class="formPartNameSmall">
+                Resident
+                <div class="smallHandwriting">Y</div>
+            </div>
+            <div class="formPartNameBig">
+                Address (if not resident)
+            </div>
+        </div>
+
+    </div>
 </div>
