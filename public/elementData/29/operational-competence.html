@@ -38,12 +38,31 @@
         font-size: 4mm;
     }
 
+    .infoBlock {
+        width: 85mm;
+        margin-left: 7.5mm;
+        margin-right: 2.5mm;
+        margin-top: 7.5mm;
+        border: 0.25mm solid black;
+        padding: 2.5mm
+
+    }
+
+    /*
     .languageTable {
-        width: 90mm;
+        width: 85mm;
         margin-left: 10mm;
         margin-right: 5mm;
         margin-top: 10mm;
     }
+
+    .investigativeSkills {
+        width: 85mm;
+        margin-left: 10mm;
+        margin-right: 5mm;
+        margin-top: 10mm;
+        border: 0.5mm solid black;
+    }*/
 
     .agentDataBlock {
         display: flex;
@@ -54,6 +73,7 @@
         font-size: 3mm;
         height: 10mm;
     }
+
 </style>
 
 <div class="container">
@@ -79,107 +99,125 @@
     </div>
 
     <div class="agentDataBlock">
-        <div style="width: 40mm; border: 0.5mm solid black;">
+        <div style="width: 40mm; border: 0.5mm solid black; padding-left: 5mm;">
             Operator Codename
             <div style="font-size: 2.5mm">Cuprous</div>
         </div>
-        <div style="width: 20mm; border: 0.5mm solid black;">
+        <div style="width: 20mm; border: 0.5mm solid black; padding-left: 5mm;">
             Gender
             <div style="font-size: 2.5mm">M</div>
         </div>
-        <div style="width: 75mm; border: 0.5mm solid black;">
+        <div style="width: 75mm; border: 0.5mm solid black; padding-left: 5mm;">
             Rank
             <div>Junior Field Investigative Agent</div>
         </div>
-        <div style="width: 75mm; border: 0.5mm solid black;">
+        <div style="width: 75mm; border: 0.5mm solid black; padding-left: 5mm;">
             Assignment
             <div>14th Century Investigative Strikeforce</div>
         </div>
     </div>
 
+    <div style="display: flex; flex-direction: row;">
+        <table class="infoBlock" style="
+                width: 85mm;
+                "
+        >
+            <tr>
+                <th>
+                    Language
+                </th>
+                <th>
+                    Proficiency Level
+                </th>
+                <th>
+                    Accent/Register(s)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Standard
+                </td>
+                <td>
+                    C2
+                </td>
+                <td>
+                    Terranovan Vernacular, Academic
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Latin
+                </td>
+                <td>
+                    B1
+                </td>
+                <td>
+                    Ecclesial
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Hellenic
+                </td>
+                <td>
+                    A2
+                </td>
+                <td>
+                    Academic, Vernacular
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Hesperian Iberian
+                </td>
+                <td>
+                    A1
+                </td>
+                <td>
+                    Confused Tourist
+                </td>
+            </tr>
+        </table>
 
-    <table class="languageTable">
-        <tr>
-            <th>
-                Language
-            </th>
-            <th>
-                Proficiency Level
-            </th>
-            <th>
-                Accent/Register(s)
-            </th>
-        </tr>
-        <tr>
-            <td>
-                Standard
-            </td>
-            <td>
-                C2
-            </td>
-            <td>
-                Terranovan Vernacular, Academic
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Latin
-            </td>
-            <td>
-                B1
-            </td>
-            <td>
-                Ecclesial
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Hellenic
-            </td>
-            <td>
-                A2
-            </td>
-            <td>
-                Academic, Vernacular
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Hesperian Iberian
-            </td>
-            <td>
-                A1
-            </td>
-            <td>
-                Confused Tourist
-            </td>
-        </tr>
-    </table>
+        <div class="infoBlock">
+            Investigative Skills
+            <ul>
+                <li>Photographic memory</li>
+                <li>Ability to stream vision back to central</li>
+                <li>High historical literacy</li>
+            </ul>
+        </div>
+    </div>
 
+    <div style="display: flex; flex-direction: row;">
+        <div class="infoBlock">
+            Combat Proficiencies
+            <ul>
+                <li>Rapier (Destreza)</li>
+                <li>Pistol (5.7mm Automatic)</li>
+                <li>Unarmed Combat (Boxing)</li>
+            </ul>
+        </div>
+        <div class="infoBlock">
+            Tactical Skills
+            <ul>
+                <li>Infiltration</li>
+                <li>Covert Communications</li>
+                <li>Silent Takedowns</li>
+                <li>Predictive Violence</li>
+                <li>Forecasting</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
 </div>
 
 
 okay this guy is like a duelist and is really good at covert/stealth combat
 less good at looking normal because he has low charisma and socially acts like a robot
-
-Historical Literacy: High
-Tactical Acumen: High
-
-Investigative skills:
-- Photographic memory
-- Ability to stream vision back to comms van
-
-Combat skills:
-- Rapier
-- Pistol
-- Unarmed Combat
-
-Tactical skills:
-- Infiltration
-- Information Theft
-- Communications
-- Silent Takedowns
-- Predictive Violence
 
 Combat proficiency breakdown
 - CQC (Armed)
