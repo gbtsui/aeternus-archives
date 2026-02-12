@@ -23,7 +23,8 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         row: 4,
         characterName: "Cuprous",
         archiveDocuments: [
-            {filename: "intake.html", title: "Intake"}
+            {filename: "intake.html", title: "Intake"},
+            {filename: "operational-competence.html", title: "Ops Competence"}
         ]
     },
 
