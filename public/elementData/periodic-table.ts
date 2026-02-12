@@ -58,7 +58,8 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         row: 4,
         characterName: "Petros",
         archiveDocuments: [
-            {filename: "intake.html", title: "intake"}
+            {filename: "intake.html", title: "intake"},
+            {filename: "initial-interview-record.html", title: "initial interview"},
         ]
     },
 
