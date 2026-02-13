@@ -28,22 +28,28 @@
         font-size: 3mm;
         text-align: right;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .leftside {
         width: 90mm;
         height: 297mm;
-        background-color: #171717;
+        background-color: #361550;
+        color: #f3e8ff;
     }
 
     .rightside {
         width: 120mm;
         height: 297mm;
+
     }
 
     .rightHeader {
-
+        padding-right: 10mm;
+        margin-top: 5mm;
+        padding-bottom: 10mm;
+        background-color: #f3e8ff;
     }
 </style>
 
@@ -54,6 +60,20 @@
 
         <div class="leftside">
             <img src="/assets/elemental/53/I_portrait_1.PNG" class="professionalAhhPortrait" alt="A picture of April Lau"/>
+
+            <div>
+                <div>
+                    <div>Education</div>
+                    <div>
+                        <div>Homeschool</div>
+                        <div>1354-1362 / Apreo Secondary School Diploma</div>
+                    </div>
+                    <div>
+                        <div>Rubiport Polytechnic University</div>
+                        <div>1363-1365 / Bachelor's of Engineering (Materials)</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--rightside-->
@@ -67,16 +87,65 @@
                 </div>
 
                 <div class="contactInfo">
-                    <div>
-                        @lauzijuk on NeueComm
+                    <div style="text-align: left; display: flex; flex-direction: column; width: 50mm; align-self: center; font-weight: 200; margin-left: 5mm; gap: 10mm;">
+                        <div>
+                            @jadedapril on NeueComm <br/>
+                            lauzijuk@kosmon.global
+                        </div>
+                        <div style="font-size: 2.5mm">
+                            256 4th Street, Rubiport, Apreo, Terranova
+                        </div>
                     </div>
-                    <div>
-                        lauzijuk@kosmon.global
+                    <div style="font-size: 10mm; font-weight: 300;">
+                        Materials Engineer
                     </div>
                 </div>
             </div>
 
+
+            <div class="rightBody">
+                <div class="aboutMe">
+                    <div>About Me</div>
+                    <div>Young materials researcher with a passion for developing ultrastrong fiber technologies. Looking for dynamic lab opportunities to continue research for industrial and ballistic applications. CHANGE THIS LATER - I DON'T KNOW HOW TO WRITE BUZZWORDY BIOS.</div>
+                </div>
+
+                <div class="workExperience">
+                    <div class="workExperienceEntry">
+                        <div>Freelance Dressmaker / Independent - 1358-1362</div>
+                        <ul>
+                            <li>Pattern-drafted and constructed custom garments using synthetic and natural fiber textiles</li>
+                            <li>Managed small-scale production workflow</li>
+                            <li>Developed early familiarity with tensile behavior and fabric structural properties</li>
+                        </ul>
+                    </div>
+                    <div class="workExperienceEntry">
+                        <div>Facilities Management Intern / Kosmon Materials Department - 1362</div>
+                        <ul>
+                            <li>Assisted laboratory operations team with maintenance and sterilization of research facilities</li>
+                            <li>Handled controlled cleaning agents under supervision in compliance with safety protocols</li>
+                            <li>Supported materials storage and workspace preparation for active research teams</li>
+                        </ul>
+                    </div>
+                    <div class="workExperienceEntry">
+                        <div>Research Assistant / Kosmon Materials Department - 1363-1365</div>
+                        <div>Undergraduate thesis work to optimize strength properties of aramid fibers within chlorine-saturated environments.</div>
+                    </div>
+                    <div class="workExperienceEntry">
+                        <div>Research Fellow / Kosmon Materials Department - 1365-Present</div>
+                        <div>Researched ultraviolet resistance of aramid and para-aramid fibers.</div>
+                    </div>
+                </div>
+
+                <div class="projects">
+                    <div>Projects</div>
+
+                </div>
+            </div>
+
+
         </div>
+
+
     </div>
 
 </div>
