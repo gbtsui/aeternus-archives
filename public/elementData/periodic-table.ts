@@ -116,7 +116,9 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         column: 17,
         row: 5,
         characterName: "Astatine",
-        archiveDocuments: []
+        archiveDocuments: [
+            {filename: "resume.html", title: "Resume"}
+        ]
     },
 
     15: {

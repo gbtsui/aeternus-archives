@@ -5,7 +5,7 @@ import {
     Edu_TAS_Beginner,
     Nothing_You_Could_Do,
     Noto_Serif_HK,
-    Playpen_Sans
+    Playpen_Sans, Ubuntu
 } from "next/font/google";
 import "./globals.css";
 
@@ -45,6 +45,13 @@ const courierPrime = Courier_Prime({
     weight: "400"
 })
 
+const ubuntu = Ubuntu({
+    variable: "--font-ubuntu",
+    subsets: ["latin", "latin-ext"],
+    weight: "400"
+})
+
+
 export const metadata: Metadata = {
   title: "AETERNUS ARCHIVES",
   description: "a project by gabriel augustyn",
@@ -58,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} ${playpenSans.variable} ${courierPrime.variable} antialiased`}
+        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} ${playpenSans.variable} ${courierPrime.variable} ${ubuntu.variable} antialiased`}
       >
         {children}
       </body>
