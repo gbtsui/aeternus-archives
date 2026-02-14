@@ -39,10 +39,29 @@
         margin-top: 10mm;
     }
 
-    .marksTable,
     .marksTable th,
     .marksTable td {
         border: 0.5mm solid #000;
+        border-bottom: 0;
+    }
+
+    .assessmentSection {
+        display: flex;
+        flex-direction: row;
+        gap: 2.5mm;
+        margin-top: 2mm;
+    }
+
+    .handwriting {
+        font-family: "Nothing You Could Do"
+    }
+
+    .signatureSection {
+        margin-top: 10mm;
+        display: flex;
+        border: 0.5mm solid #000;
+        border-bottom: 0;
+        width: 70mm;
     }
 
 </style>
@@ -87,11 +106,11 @@
                 <div>Mme. Massinisa</div>
             </div>
             <div class="formEntry">
-                Addresse
+                <strong>Addresse</strong>
                 <div>962 Rue Roquecourbe, Quatres-Montaignes, Villefort, Gaule</div>
             </div>
             <div class="formEntry">
-                École
+                <strong>École</strong>
                 <div>École Technique de Quatres-Montaignes</div>
             </div>
         </div>
@@ -146,17 +165,59 @@
                     <td>
                         Alethée possède déjà des connaissances approfondies en mécanique automobile. Elle conteste régulièrement les explications en affirmant
                         les maîtriser entièrement, ce qui semble souvent exact. En l’absence de contenu supplémentaire à lui proposer, je validerai néanmoins
-                        ses compétences pour ce semestre.
+                        ses compétences pour ce semestre. Son comportement en atelier est irréprochable.
                         <!--elle est deja mechanique sob-->
                     </td>
                 </tr>
             </table>
         </div>
 
-        <div>
+        <div class="assessmentSection">
+            <div class="formEntry">
+                <div><strong>Assiduité</strong></div>
 
+                <div>Absences : 38 jours sur 90</div>
+                <div>Retards : 7</div>
+            </div>
+
+            <div class="formEntry">
+                <div><strong>Conduite</strong></div>
+
+                <div>Comportement général : Satisfaisant envers l’équipe pédagogique</div>
+                <div>Relations avec les pairs : Tensions récurrentes</div>
+            </div>
         </div>
 
+        <div class="assessmentSection">
+            <div class="formEntry">
+                <div><strong>Sanctions disciplinaires</strong></div>
+                <div>3 suspensions au cours du semestre - avertissement final en vigeur</div>
+
+                <div>
+                    L’élève a été impliquée dans plusieurs altercations physiques avec d’autres élèves.
+                    Les enquêtes internes indiquent qu’elle n’est pas systématiquement à l’origine des
+                    incidents; toutefois, les réponses apportées demeurent disproportionnées. Toute
+                    récidive pourra entraîner une procédure d’exclusion définitive.
+                </div>
+            </div>
+
+            <div class="formEntry">
+                <strong>Appréciation Générale</strong>
+                <div>
+                    Élève intellectuellement brillante et respectueuse envers les enseignants.
+                    Son intégration au groupe reste cependant difficile.
+                    Un effort particulier devra être fait pour éviter l’escalade des conflits entre élèves.
+                </div>
+            </div>
+        </div>
+        <div class="signatureSection">
+            <div>
+                Signature de Proviseur(se)
+                <div>
+                    X <span class="handwriting">Massinisa</span>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
