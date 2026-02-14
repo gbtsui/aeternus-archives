@@ -36,7 +36,9 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         column: 1,
         row: 3,
         characterName: "Sofia",
-        archiveDocuments: []
+        archiveDocuments: [
+            {filename: "intake.html", title: "Intake"},
+        ]
     },
 
     12: {
@@ -47,7 +49,9 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         column: 2,
         row: 3,
         characterName: "Alethée",
-        archiveDocuments: []
+        archiveDocuments: [
+            {filename: "intake.html", title: "Intake"},
+        ]
     },
 
     20: {
