@@ -92,7 +92,7 @@ export default function AnimatedDocumentFolder(props: AnimatedDocumentFolderProp
                     style={openedFolderFlapStyle}
                 >
                     <div className={"absolute bg-amber-100 bottom-0 left-[-3.5vh] h-[25vh] w-[3.5vh] rounded-l-md border-l-amber-300 border-l-1 border-r-0 z-[202]"}>
-                        {phase}
+                        {/*phase*/}
                     </div>
                 </div>
 

@@ -86,7 +86,7 @@ export default function DocumentStage(props: DocumentStageProps) {
         >
             <div onClick={changeState} className={"cursor-pointer pointer-events-auto absolute top-[-3vh] left-[2vw] border-t-[0.5rem] border-x-[0.5rem] border-gray-700 text-black bg-[#9298a2] p-[1rem]"}>
                 <div className={"top-[1vh] z-6"}>{state === "open" ? <div>CLOSE</div> : <div>OPEN </div>}</div>
-                <div className={"absolute top-[-2.75vh] text-gray-300"}>{state}</div>
+                <div className={"absolute top-[-2.75vh] text-gray-300"}>{/*state*/}</div>
             </div>
 
             {/*this part is going to be where the folders actually will be residing!*/}
