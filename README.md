@@ -36,4 +36,15 @@ Also, because most of these documents are supposed to be like, printed paper doc
 
 To be honest this is an almost entirely frontend project. 
 
+## How to Use
 
+Click on an element to read about the character I designed based off of it!!
+
+There's not that much, really. I've divided character docs into folders - at the moment, there's probably
+only one per character so far (with the exception of calcium which should have 2).
+(It takes time to write and style these documents... I'm also really bad at CSS right now, I think so far the only thing I can say looks 
+good is Iodine but the rest are meant to be boring, if not particularly well-formatted.)
+
+## Screenshots
+![img.png](/public/assets/readme/img.png)
+![sample](/public/assets/readme/aeternus-archives-prototype-1.png)
