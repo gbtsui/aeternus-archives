@@ -74,6 +74,30 @@
         height: 10mm;
     }
 
+    .description {
+        width: 190mm;
+        margin-left: 10mm;
+        margin-top: 10mm;
+        height: 80mm;
+        border: 0.5mm solid black;
+    }
+
+    .smallHandwriting {
+        font-family: 'Nothing You Could Do';
+        font-size: 5mm
+    }
+
+    .signatureBox {
+        font-size: 3mm;
+        border-bottom: 0.5mm solid black;
+        width: 60mm;
+        height: 10mm;
+    }
+
+    .caudex {
+        font-family: 'Caudex'
+    }
+
 </style>
 
 <div class="container">
@@ -101,83 +125,85 @@
     <div class="agentDataBlock">
         <div style="width: 40mm; border: 0.5mm solid black; padding-left: 5mm;">
             Operator Codename
-            <div style="font-size: 2.5mm">Cuprous</div>
+            <div style="font-size: 2.5mm" class="smallHandwriting">Cuprous</div>
         </div>
         <div style="width: 20mm; border: 0.5mm solid black; padding-left: 5mm;">
             Gender
-            <div style="font-size: 2.5mm">M</div>
+            <div style="font-size: 2.5mm" class="smallHandwriting">M</div>
         </div>
         <div style="width: 75mm; border: 0.5mm solid black; padding-left: 5mm;">
             Rank
-            <div>Junior Field Investigative Agent</div>
+            <div  style="font-size: 2.5mm" class="smallHandwriting">Junior Field Investigative Agent</div>
         </div>
         <div style="width: 75mm; border: 0.5mm solid black; padding-left: 5mm;">
             Assignment
-            <div>14th Century Investigative Strikeforce</div>
+            <div style="font-size: 2.5mm" class="smallHandwriting">14th Century Investigative Strikeforce</div>
         </div>
     </div>
 
     <div style="display: flex; flex-direction: row;">
-        <table class="infoBlock" style="
+        <div class="infoBlock">
+            <table style="
                 width: 85mm;
                 "
-        >
-            <tr>
-                <th>
-                    Language
-                </th>
-                <th>
-                    Proficiency Level
-                </th>
-                <th>
-                    Accent/Register(s)
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    Standard
-                </td>
-                <td>
-                    C2
-                </td>
-                <td>
-                    Terranovan Vernacular, Academic
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Latin
-                </td>
-                <td>
-                    B1
-                </td>
-                <td>
-                    Ecclesial
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Hellenic
-                </td>
-                <td>
-                    A2
-                </td>
-                <td>
-                    Academic, Vernacular
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Hesperian Iberian
-                </td>
-                <td>
-                    A1
-                </td>
-                <td>
-                    Confused Tourist
-                </td>
-            </tr>
-        </table>
+            >
+                <tr>
+                    <th>
+                        Language
+                    </th>
+                    <th>
+                        Proficiency Level
+                    </th>
+                    <th>
+                        Accent/Register(s)
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Standard
+                    </td>
+                    <td>
+                        C2
+                    </td>
+                    <td>
+                        Terranovan Vernacular, Academic
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Latin
+                    </td>
+                    <td>
+                        B1
+                    </td>
+                    <td>
+                        Ecclesial
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Hellenic
+                    </td>
+                    <td>
+                        A2
+                    </td>
+                    <td>
+                        Academic, Vernacular
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Hesperian Iberian
+                    </td>
+                    <td>
+                        A1
+                    </td>
+                    <td>
+                        Confused Tourist
+                    </td>
+                </tr>
+            </table>
+        </div>
 
         <div class="infoBlock">
             Investigative Skills
@@ -210,24 +236,35 @@
         </div>
     </div>
 
-    <div>
+    <div class="description">
+        Notes
 
+        <div class="caudex">
+            <ul>
+                <li>Very competent duelist. Would do extremely well in covert/stealth scenarios.</li>
+                <li>Uncanny accuracy up to 30m with pistol, but only with left arm.</li>
+                <li>Cybernetic implants probably significantly improve skills.</li>
+                <li>However, rather socially distinct. Rather... autistic? Speech is overly formal and restrained, relatively monotone voice. Sounds unnatural.</li>
+                <li>Punching strength in left arm is pretty good, too. Would be useful in a disarmed situation.</li>
+                <li>Can read opponents like a book and can accurately predict a few moves ahead. Kind of scary.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: row; gap: 5mm; margin-top: 10mm; margin-left: 10mm">
+        <div class="signatureBox">
+            Squad Lead Signature
+            <div class="caudex">axios</div>
+        </div>
+
+        <div class="signatureBox">
+            Supervisor Signature
+            <div class="smallHandwriting">AL</div>
+        </div>
+
+        <div class="signatureBox">
+            Date
+            <div class="smallHandwriting">September 8th, 1367</div>
+        </div>
     </div>
 </div>
-
-
-okay this guy is like a duelist and is really good at covert/stealth combat
-less good at looking normal because he has low charisma and socially acts like a robot
-
-Combat proficiency breakdown
-- CQC (Armed)
-- - Capability: High
-- -
-
-- Open area combat
-- - Capability: High
-
-- Unarmed Combat
-- - Grappling capability: Low
-- - Striking capability: Medium
-
