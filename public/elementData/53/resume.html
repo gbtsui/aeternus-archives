@@ -6,7 +6,9 @@
         color: #000;
         margin-bottom: 30mm;
 
-        font-family: "Ubuntu"
+        font-family: "Noto Sans HK";
+        pointer-events: none;
+        user-select: none;
     }
 
 
@@ -20,8 +22,9 @@
     }
 
     .name {
-        font-size: 20mm;
+        font-size: 15mm;
         text-align: right;
+        padding-left: 5mm;
     }
 
     .contactInfo {
@@ -50,6 +53,32 @@
         margin-top: 5mm;
         padding-bottom: 10mm;
         background-color: #f3e8ff;
+        height: 80mm;
+    }
+
+    .leftHeader {
+        height: 95mm;
+    }
+
+    .sectionHeader {
+        text-align: center;
+        font-size: 5mm;
+    }
+
+    .section {
+        font-size: 3mm;
+        margin-top: 2mm;
+        padding-left: 5mm;
+        padding-right: 5mm;
+    }
+
+    .workExperienceHeader {
+        font-size: 3.5mm;
+    }
+    .chineseName {
+        font-size: 7.5mm;
+        text-align: right;
+        font-weight: lighter;
     }
 </style>
 
@@ -59,18 +88,47 @@
         <!--leftside-->
 
         <div class="leftside">
-            <img src="/assets/elemental/53/I_portrait_1.PNG" class="professionalAhhPortrait" alt="A picture of April Lau"/>
+            <div class="leftHeader">
+                <img src="/assets/elemental/53/I_portrait_1.PNG" class="professionalAhhPortrait" alt="A picture of April Lau"/>
+            </div>
 
             <div>
-                <div>
-                    <div>Education</div>
+                <div class="section">
+                    <div class="sectionHeader">Education</div>
                     <div>
-                        <div>Homeschool</div>
-                        <div>1354-1362 / Apreo Secondary School Diploma</div>
+                        <div class="workExperience">Homeschool</div>
+                        <div class="workExperienceHeader">1354-1362 / Apreo Secondary School Diploma</div>
                     </div>
                     <div>
-                        <div>Rubiport Polytechnic University</div>
-                        <div>1363-1365 / Bachelor's of Engineering (Materials)</div>
+                        <div class="workExperience">Rubiport Polytechnic University</div>
+                        <div class="workExperienceHeader">1363-1365 / Bachelor of Engineering (Materials)</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="sectionHeader">Skills</div>
+                    <ul>
+                        <li>Scanning/Transmission Electron Microscopy</li>
+                        <li>Chemical Resistance Modeling</li>
+                        <li>Data Modeling (MATLAB)</li>
+                        <li>Statistical Analysis (Python)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="sectionHeader">Language Proficiencies</div>
+                    <ul>
+                        <li>Standard (Native)</li>
+                        <li>Jyutjyu (Native)</li>
+                        <li>Guoyu (B1)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="sectionHeader">References</div>
+                    <div>
+                        <div class="workExperienceHeader">Julius Silicia</div>
+                        <div class="workExperience">CEO, Kosmon Corporation / siliciajulius@kosmon.global</div>
                     </div>
                 </div>
             </div>
@@ -81,6 +139,9 @@
             <div class="rightHeader">
                 <!--nameplate-->
                 <div class="name">
+                    <div class="chineseName">
+                        劉紫玉
+                    </div>
                     <strong>
                         April (Zijuk) Lau
                     </strong>
@@ -104,14 +165,20 @@
 
 
             <div class="rightBody">
-                <div class="aboutMe">
-                    <div>About Me</div>
-                    <div>Young materials researcher with a passion for developing ultrastrong fiber technologies. Looking for dynamic lab opportunities to continue research for industrial and ballistic applications. CHANGE THIS LATER - I DON'T KNOW HOW TO WRITE BUZZWORDY BIOS.</div>
+                <div class="section">
+                    <div class="sectionHeader">About Me</div>
+                    <div>
+                        Materials engineer specializing in high-performance aramid fiber systems.
+                        Research focus includes chemical degradation resistance and ultraviolet
+                        stability in hostile environments. Interested in translational materials
+                        research bridging laboratory optimization and industrial-scale deployment.
+                    </div>
                 </div>
 
-                <div class="workExperience">
+                <div class="section">
+                    <div class="sectionHeader">Work Experience</div>
                     <div class="workExperienceEntry">
-                        <div>Freelance Dressmaker / Independent - 1358-1362</div>
+                        <div class="workExperienceHeader">Freelance Dressmaker / Independent - 1358-1362</div>
                         <ul>
                             <li>Pattern-drafted and constructed custom garments using synthetic and natural fiber textiles</li>
                             <li>Managed small-scale production workflow</li>
@@ -119,7 +186,7 @@
                         </ul>
                     </div>
                     <div class="workExperienceEntry">
-                        <div>Facilities Management Intern / Kosmon Materials Department - 1362</div>
+                        <div class="workExperienceHeader">Facilities Management Intern / Kosmon Materials Department - 1362</div>
                         <ul>
                             <li>Assisted laboratory operations team with maintenance and sterilization of research facilities</li>
                             <li>Handled controlled cleaning agents under supervision in compliance with safety protocols</li>
@@ -127,18 +194,23 @@
                         </ul>
                     </div>
                     <div class="workExperienceEntry">
-                        <div>Research Assistant / Kosmon Materials Department - 1363-1365</div>
-                        <div>Undergraduate thesis work to optimize strength properties of aramid fibers within chlorine-saturated environments.</div>
+                        <div class="workExperienceHeader">Research Assistant / Kosmon Materials Department - 1363-1365</div>
+                        <ul>
+                            <li>Conducted tensile strength testing on aramid fiber samples exposed to chlorine-saturated atmospheres</li>
+                            <li>Designed controlled degradation simulations to model industrial chemical exposure</li>
+                            <li>Analyzed microstructural damage patterns using microscopy techniques</li>
+                            <li>Co-authored departmental thesis on chemical resilience optimization</li>
+                        </ul>
                     </div>
                     <div class="workExperienceEntry">
-                        <div>Research Fellow / Kosmon Materials Department - 1365-Present</div>
-                        <div>Researched ultraviolet resistance of aramid and para-aramid fibers.</div>
+                        <div class="workExperienceHeader">Research Fellow / Kosmon Materials Department - 1365-Present</div>
+                        <ul>
+                            <li>Led independent study on ultraviolet degradation pathways in aramid and para-aramid composites</li>
+                            <li>Developed accelerated UV exposure testing protocols</li>
+                            <li>Modeled long-term ballistic performance decay under solar radiation stress</li>
+                            <li>Collaborated with industrial partners on durability forecasting models</li>
+                        </ul>
                     </div>
-                </div>
-
-                <div class="projects">
-                    <div>Projects</div>
-
                 </div>
             </div>
 
