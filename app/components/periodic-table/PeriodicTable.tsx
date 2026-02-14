@@ -51,7 +51,10 @@ export default function PeriodicTable(props: PeriodicTableProps) {
 
 
     const elements = Object.values(periodicTableElementsBasicData)
-    const shuffledElements = shuffle(elements) as unknown as ElementBasicMetadata[];
+    const filledElements = elements.filter((el: ElementBasicMetadata) => {
+        return el.archiveDocuments.length !== 0
+    })
+    const shuffledElements = shuffle(filledElements) as unknown as ElementBasicMetadata[];
 
 
     return (

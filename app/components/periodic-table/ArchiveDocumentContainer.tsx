@@ -82,7 +82,7 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                     width: "80vw",
                     height: "80vh"
                 }}>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
-                    <div style={{contain: "initial"}}>
+                    <div style={{contain: "initial", userSelect: "none"}}>
                         <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
                     </div>
                 </PannableArea>
