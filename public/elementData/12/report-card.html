@@ -5,111 +5,158 @@
         background: #fefefe;
         color: #000;
         margin-bottom: 30mm;
+        font-family: Arial;
     }
 
+    .headerSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 5mm;
+        padding-left: 10mm;
+        padding-right: 10mm;
+        padding-top: 10mm;
+    }
+
+    .schoolDetails {
+        display: flex;
+        flex-direction: row;
+        gap: 2.5mm;
+    }
+    .docBody {
+        padding-left: 10mm;
+        padding-right: 10mm;
+    }
+
+    .formEntry {
+        border: 0.5mm solid #000;
+        border-bottom: 0;
+        padding-left: 1mm;
+        padding-right: 1mm;
+    }
+
+    .marksSection {
+        margin-top: 10mm;
+    }
+
+    .marksTable,
+    .marksTable th,
+    .marksTable td {
+        border: 0.5mm solid #000;
+    }
 
 </style>
 
 <div class="container">
     <!--header thing with school info and allat-->
 
-    <div>
+    <div class="headerSection">
         <div>
-            Villefort
+            Région de Villefort
         </div>
         <div>
             Bulletin Semestriel, Lycée
         </div>
-        <div>
+        <div style="font-size: 3.5mm">
             <div>Semestre 2</div>
             <div>Juillet 29, 1367</div>
         </div>
     </div>
 
-    <!--school details!!-->
-    <div>
-        <div>
-            Étudiant(e):
-            <div>Alethée Hiponès</div>
+    <div class="docBody">
+        <!--school details!!-->
+        <div class="schoolDetails">
+            <div class="formEntry" style="width: 40mm;">
+                <strong>Étudiant(e):</strong>
+                <div>Alethée Hiponès</div>
+            </div>
+            <div class="formEntry">
+                <strong>Nombre d'étudiant:</strong>
+                <div>354430</div>
+            </div>
+            <div class="formEntry">
+                <strong>Année:</strong>
+                <div>2e</div>
+            </div>
+            <div class="formEntry">
+                <strong>Salle:</strong>
+                <div>202</div>
+            </div>
+            <div class="formEntry">
+                <strong>Proviseur(se):</strong>
+                <div>Mme. Massinisa</div>
+            </div>
+            <div class="formEntry">
+                Addresse
+                <div>962 Rue Roquecourbe, Quatres-Montaignes, Villefort, Gaule</div>
+            </div>
+            <div class="formEntry">
+                École
+                <div>École Technique de Quatres-Montaignes</div>
+            </div>
         </div>
-        <div>
-            Nombre d'étudiant:
-            <div>354430</div>
+
+
+        <div class="marksSection">
+            <!--okay this is gonna be the real meat of the thingy-->
+            <table class="marksTable">
+                <tr>
+                    <th>Cours</th>
+                    <th>Enseignant(e)</th>
+                    <th>Note</th>
+                    <th>Moyen de Classe</th>
+                    <th>Progrès</th>
+                </tr>
+                <tr>
+                    <td>Philosophie 3</td>
+                    <td>M. Rousseau</td>
+                    <td>17.9</td>
+                    <td>12.4</td>
+                    <td>
+                        Alethée est une étudiante problématique. Elle est très intelligente et obtient d’excellentes notes à tous les examens et travaux.
+                        Cependant, elle est souvent absente. Lorsqu’elle est présente, elle se bat régulièrement avec ses camarades de classe. Néanmoins,
+                        lorsqu’elle se comporte correctement, elle peut expliquer des idées philosophiques complexes sans difficulté. Je pense qu’elle peut
+                        accomplir de grandes choses dans la vie, mais elle devrait s’appliquer davantage.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gaulois 2</td>
+                    <td>Mme. Persi</td>
+                    <td>16.7</td>
+                    <td>14.3</td>
+                    <td>
+                        Élève polie et attentive en classe. Participe avec sérieux. Cependant, son intégration au groupe reste difficile. Les conflits
+                        observés semblent découler de tensions persistantes avec certains élèves.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Calcul 1</td>
+                    <td>M. Gottfried</td>
+                    <td>14.6</td>
+                    <td>8.2</td>
+                    <td>
+                        Elle comprende les dérivées, je n'ai aucune inquiétude.1
+                    </td>
+                </tr>
+                <tr>
+                    <td>Atelier Méchanique</td>
+                    <td>Mme. de Triomphe</td>
+                    <td>20.0</td>
+                    <td>14.7</td>
+                    <td>
+                        Alethée possède déjà des connaissances approfondies en mécanique automobile. Elle conteste régulièrement les explications en affirmant
+                        les maîtriser entièrement, ce qui semble souvent exact. En l’absence de contenu supplémentaire à lui proposer, je validerai néanmoins
+                        ses compétences pour ce semestre.
+                        <!--elle est deja mechanique sob-->
+                    </td>
+                </tr>
+            </table>
         </div>
+
         <div>
-            Année:
-            <div>2e</div>
+
         </div>
-        <div>
-            Salle:
-            <div>202</div>
-        </div>
-        <div>
-            Proviseur(e):
-            <div>Mme. Massinisa</div>
-        </div>
+
     </div>
 
-    <!--student details-->
-
-    <div>
-        <div>
-            Addresse
-            <div>962 Rue Roquecourbe, Quatres-Montaignes, Villefort, Gaule</div>
-        </div>
-    </div>
-
-    <!--okay this is gonna be the real meat of the thingy-->
-    <table>
-        <tr>
-            <th>Cours</th>
-            <th>Enseignant(e)</th>
-            <th>Note</th>
-            <th>Moyen de Classe</th>
-            <th>Progrès</th>
-        </tr>
-        <tr>
-            <td>Philosophie 3</td>
-            <td>M. Rousseau</td>
-            <td>17.9</td>
-            <td>12.4</td>
-            <td>
-                Alethée est une étudiante problématique. Elle est très intelligente et obtient d’excellentes notes à tous les examens et travaux.
-                Cependant, elle est souvent absente. Lorsqu’elle est présente, elle se bat régulièrement avec ses camarades de classe. Néanmoins,
-                lorsqu’elle se comporte correctement, elle peut expliquer des idées philosophiques complexes sans difficulté. Je pense qu’elle peut
-                accomplir de grandes choses dans la vie, mais elle devrait s’appliquer davantage.
-            </td>
-        </tr>
-        <tr>
-            <td>Gaulois 2</td>
-            <td>Mme. Persi</td>
-            <td>16.7</td>
-            <td>14.3</td>
-            <td>
-                Élève polie et attentive en classe. Participe avec sérieux. Cependant, son intégration au groupe reste difficile. Les conflits
-                observés semblent découler de tensions persistantes avec certains élèves.
-            </td>
-        </tr>
-        <tr>
-            <td>Calcul 1</td>
-            <td>M. Gottfried</td>
-            <td>14.6</td>
-            <td>8.2</td>
-            <td>
-                Elle comprende les dérivées, je n'ai aucune inquiétude.1
-            </td>
-        </tr>
-        <tr>
-            <td>Atelier Méchanique</td>
-            <td>Mme. de Triomphe</td>
-            <td>20.0</td>
-            <td>14.7</td>
-            <td>
-                Alethée possède déjà des connaissances approfondies en mécanique automobile. Elle conteste régulièrement les explications en affirmant
-                les maîtriser entièrement, ce qui semble souvent exact. En l’absence de contenu supplémentaire à lui proposer, je validerai néanmoins
-                ses compétences pour ce semestre.
-                <!--elle est deja mechanique sob-->
-            </td>
-        </tr>
-    </table>
 </div>
