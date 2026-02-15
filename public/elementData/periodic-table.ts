@@ -38,6 +38,7 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         characterName: "Sofia",
         archiveDocuments: [
             {filename: "intake.html", title: "Intake"},
+            {filename: "bolton-professor-murdered.html", title: "BtSp Oct 18 1367"}
         ]
     },
 
