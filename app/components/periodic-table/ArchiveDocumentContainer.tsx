@@ -5,6 +5,7 @@ import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import ShadowDOMComponent from "@/app/components/universal/ShadowDOMComponent";
 import {PannableArea} from "@/app/components/universal/PannableArea";
 import {AnimatedFolderLiftState} from "@/app/components/archive-pages/AnimatedDocumentFolder";
+import "@/app/stylesheets/spinny.css"
 
 type ArchiveDocumentContainerProps = {
     //data: ArchiveDocumentMetadata,
@@ -124,23 +125,42 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                         x
                     </div>
                 </div>
+                <div style={{
+                    opacity: phase === "boot" || phase === "expand" ? 1 : 0,
+                    transition: "transform 0.5s ease, opacity 0.4s ease",
+                    width: "80vw",
+                    height: "80vh",
+                    position: "absolute",
+                    bottom: "2rem",
+                    display: "flex",
+                    justifyContent: "center"
+                }}  >
+                    <div className={"text-3xl text-center w-full flex flex-col justify-center items-center align-center gap-5vw bg-[#161625] gap-[5rem]"}>
+                        now and ever and unto ages of ages
+                        <img src={"/assets/universal/aeternus-logo-white.svg"} alt={"aeternus logo"} style={{
+                            width: "20vw",
+                            height: "20vw",
+                            justifySelf: "center"
+                        }} className={"spinny"}/>
+                        loading
+                    </div>
+                </div>
                 <PannableArea style={{
                     width: "80vw",
                     height: "80vh"
                 }}>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
 
-                            <div style={{
-                                opacity: phase !== "reading" ? 0 : 1,
-                                transition: "transform 0.5s ease, opacity 0.4s ease",
-                                display: "flex",
-                                justifyContent: "center"
-                            }}>
-                                <div style={{contain: "initial", userSelect: "none"}}>
-                                    <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
-                                </div>
-                            </div>
-                        )
-
+                    <div style={{
+                        opacity: phase !== "reading" ? 0 : 1,
+                        transition: "transform 0.5s ease, opacity 0.4s ease",
+                        display: "flex",
+                        justifyContent: "center"
+                    }}>
+                        <div style={{contain: "initial", userSelect: "none"}}>
+                            <ShadowDOMComponent
+                                htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
+                        </div>
+                    </div>
                 </PannableArea>
             </div>
         </div>

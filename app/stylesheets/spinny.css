@@ -1,0 +1,8 @@
+@keyframes spinnyFrames {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinny {
+    animation: spinnyFrames 1000ms cubic-bezier(1, 0, 0.67, 1) infinite;
+}
