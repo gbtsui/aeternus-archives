@@ -4,6 +4,7 @@ import {periodicTableElementsBasicData} from "@/public/elementData/periodic-tabl
 import {ElementBasicMetadata} from "@/app/schema";
 import ElementBlock from "@/app/components/periodic-table/ElementBlock";
 import {PannableArea} from "@/app/components/universal/PannableArea";
+import {useEffect, useState} from "react";
 
 type PeriodicTableProps = {
     visible: boolean;
@@ -33,29 +34,34 @@ function shuffle(array: unknown[]) {
 
 //periodic table will be the pannable viewport
 export default function PeriodicTable(props: PeriodicTableProps) {
-
-
-    if (!props.visible) {
-        return null
-    }
-
-    /*
-    return (
-        <div className={"bg-red-800 overflow-hidden min-h-screen min-w-screen"}>
-            <div>
-                <div className={"bg-white p-4"}>test test one two three</div>
-            </div>
-        </div>
-    )
-    */
-
-
     const elements = Object.values(periodicTableElementsBasicData)
     const filledElements = elements.filter((el: ElementBasicMetadata) => {
         return el.archiveDocuments.length !== 0
     })
     const shuffledElements = shuffle(filledElements) as unknown as ElementBasicMetadata[];
 
+    const animationDuration = 5000 //in ms
+    const timeBetweenElements = animationDuration / shuffledElements.length
+
+
+    const [visibleElements, setVisibleElements] = useState<Set<number>>(new Set());
+
+    useEffect(() => {
+        let mounted = true;
+        if (shuffledElements.length && props.visible) {
+            shuffledElements.forEach((el, index) => {
+                setTimeout(() => {
+                    if (!mounted) return;
+                    setVisibleElements(prev => new Set(prev).add(el.atomicNumber));
+                }, index * timeBetweenElements); // 50ms stagger, adjust for speed
+            });
+        }
+        return () => { mounted = false; }
+    }, [shuffledElements, props.visible, timeBetweenElements]);
+
+    if (!props.visible) {
+        return null
+    }
 
     return (
         <PannableArea>
@@ -68,7 +74,9 @@ export default function PeriodicTable(props: PeriodicTableProps) {
                  className={"self-center"}
             >
                 {shuffledElements.map((element) => {
-                    return <ElementBlock elementData={element} key={element.atomicNumber}/>
+                    return <ElementBlock elementData={element} key={element.atomicNumber}
+                        visible={visibleElements.has(element.atomicNumber)}
+                    />
                 })}
             </div>
         </PannableArea>

@@ -6,7 +6,8 @@ import {useRouter} from "next/navigation";
 import {usePannableContext} from "@/app/components/universal/PannableArea";
 
 type ElementBlockProps = {
-    elementData: ElementBasicMetadata
+    elementData: ElementBasicMetadata;
+    visible: boolean;
 }
 
 const elementTypeColors : Record<string, string> = {
@@ -23,7 +24,7 @@ const elementTypeColors : Record<string, string> = {
 }
 
 export default function ElementBlock(props: ElementBlockProps) {
-    const {elementData} = props;
+    const {elementData, visible} = props;
     const router = useRouter();
     const [hovering, setHovering] = useState(false);
 
@@ -42,6 +43,10 @@ export default function ElementBlock(props: ElementBlockProps) {
         boxShadow: `0 0 10px ${elementTypeColors[elementData.elementType]}`,
     }
 
+    const normalBackgroundStyle = {
+        backgroundColor: "#4a5565"
+    }
+
     const {panning, didDrag} = usePannableContext()
 
 
@@ -54,20 +59,30 @@ export default function ElementBlock(props: ElementBlockProps) {
 
     return (
         <div className={"w-[100px] h-[100px] bg-gray-700 flex"}
+             /*
              style={{
                  gridColumn: elementData.column,
                  gridRow: elementData.row,
                  transition: "all 0.5s ease",
+                                  ...(hovering ? hoverStyle : {})
+
+        }}*/
+             style={{
+                 gridColumn: elementData.column,
+                 gridRow: elementData.row,
+                 //transform: visible ? "scale(1)" : "scale(0.5)",
+                 //opacity: visible ? "100%" : "0%",
+                 transition: "all 0.5s ease",
                  ...(hovering ? hoverStyle : {})
-        }}
+             }}
              onPointerOver={() => setHovering(true)}
              onPointerLeave={() => setHovering(false)}
              onPointerUp={onPointerUp}
         > {/*container*/}
             <div className={"m-[4px] flex items-center w-full bg-gray-600 text-gray-300"}> {/*border*/}
                 <div className={"flex flex-col items-center w-full m-[5px] select-none rounded-sm backdrop-blur-sm"}
-                     style={{transition: "all 0.7s ease", ...(hovering ? hoverBackgroundStyle : {})}}
-                    >{/*inside thingy*/}
+                     style={{transition: "all 0.7s ease", ...(hovering ? hoverBackgroundStyle : normalBackgroundStyle)}}>
+                    {/*inside thingy*/}
 
 
                     <div className={"w-full ml-[10px] self-start"}>{/*top part*/}

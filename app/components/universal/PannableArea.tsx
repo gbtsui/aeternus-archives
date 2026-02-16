@@ -168,15 +168,13 @@ export const PannableArea = (props: PannableAreaProps) => {
                     border: "1px solid black",
                     cursor: panning ? "grabbing" : "grab",
                     backgroundColor: "#161625"
-                }}
-            >
+                }}>
                 <div
                     style={{
-                        transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale}`,
+                        transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
                         transformOrigin: "0 0",
                         //width:
-                    }}
-                >
+                    }}>
                     {props.children}
                 </div>
 
