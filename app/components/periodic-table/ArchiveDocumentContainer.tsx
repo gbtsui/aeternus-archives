@@ -13,21 +13,20 @@ type ArchiveDocumentContainerProps = {
     atomicNumber: number
 }
 
-export type ArchiveDocumentContainerState = {
-    phase: "opening" | "expanding" | "reading" | "closing"
-}
-
-const frameCSS = {
-    position: "relative",
-    overflow: "hidden",
-    width: "800px",
-    height: "600px"
-}
+type Phase =
+    | "idle"
+    | "bar"
+    | "expand"
+    | "boot"
+    | "reading"
+    | "collapsing"
+    | "gone"
 
 export default function ArchiveDocumentContainer(props: ArchiveDocumentContainerProps) {
     const {liftedFolder, setLiftedFolder, atomicNumber} = props;
     const [htmlData, setHtmlData] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null)
+    const [phase, setPhase] = useState<Phase>("bar")
 
     useEffect(() => {
         let cancelled = false
@@ -54,6 +53,29 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
         }
     }, [atomicNumber, liftedFolder?.doc.filename])
 
+    useEffect(() => {
+        //KURA KURA
+        if (phase === "bar") {
+            const timeout = setTimeout(() => setPhase("expand"), 300)
+            return () => clearTimeout(timeout)
+        }
+
+        if (phase === "expand") {
+            const timeout = setTimeout(() => setPhase("boot"), 500)
+            return () => clearTimeout(timeout)
+        }
+
+        if (phase === "boot") {
+            const timeout = setTimeout(() => setPhase("reading"), 1200)
+            return () => clearTimeout(timeout)
+        }
+
+        if (phase === "collapsing") {
+            const timeout = setTimeout(() => setPhase("gone"), 500)
+            return () => clearTimeout(timeout)
+        }
+    }, [phase])
+
     if (error) return <div>{error}</div>
     if (!htmlData) return null;
 
@@ -62,9 +84,25 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     //also panning and such
     //should just be a wrapper around ShadowDOMComponent?
     return (
-        <div className={"absolute z-[201] w-[84vw] h-[85vh] flex items-center"}> {/*full container?*/}
+        <div className="absolute z-[201] flex items-center justify-center overflow-hidden"
+             style={{
+                 width: "84vw",
+                 height: "85vh",
+                 transition: "transform 0.5s ease, opacity 0.4s ease",
+                 transformOrigin: "center",
+                 transform:
+                     phase === "bar"
+                         ? "scaleX(0.01) scaleY(1)"
+                         : phase === "expand"
+                             ? "scaleX(1) scaleY(1)"
+                             : phase === "collapsing"
+                                 ? "scaleX(0.01) scaleY(1)"
+                                 : "scaleX(1) scaleY(1)",
+                 opacity: phase === "gone" ? 0 : 1,
+             }}
+        > {/*full container?*/}
             <div className={"relative p-[2rem] bg-gray-500 flex flex-col gap-0.5"}> {/*viewport frame - fixed size...*/}
-                <div className={"text-lg text-gray-300"}>
+                <div className={"text-lg text-gray-300 select-none"}>
                     aeternus document viewer - Version One
                 </div>
                 <div className={"text-center flex flex-row justify-between align-middle "}>
@@ -94,5 +132,4 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
 //okay so CSS transforms really shouldnt cross shadowDOM boundaries. ts would be bad because it messes up all the internal HTML styling i will work hard on
 //contain: initial should probably get things done...? plus the shadowDOMRoot itself should probably handle it
 //i'll need to debug if it comes up tho.
-//WHY DID I WRITE THIS????? ^^ ???????
-//kyrie eleison bro what was i on that was a RANCID statement
+//Lord Jesus Christ, Son of God, have mercy upon me a sinner.
