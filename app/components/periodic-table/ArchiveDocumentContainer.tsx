@@ -26,7 +26,7 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     const {liftedFolder, setLiftedFolder, atomicNumber} = props;
     const [htmlData, setHtmlData] = useState<string | null>(null)
     const [error, setError] = useState<string | null>(null)
-    const [phase, setPhase] = useState<Phase>("bar")
+    const [phase, setPhase] = useState<Phase>("idle")
 
     useEffect(() => {
         let cancelled = false
@@ -55,6 +55,11 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
 
     useEffect(() => {
         //KURA KURA
+        if (phase === "idle") {
+            const timeout = setTimeout(() => setPhase("bar"), 300)
+            return () => clearTimeout(timeout)
+        }
+
         if (phase === "bar") {
             const timeout = setTimeout(() => setPhase("expand"), 300)
             return () => clearTimeout(timeout)
@@ -72,9 +77,12 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
 
         if (phase === "collapsing") {
             const timeout = setTimeout(() => setPhase("gone"), 500)
-            return () => clearTimeout(timeout)
+            return () => {
+                setLiftedFolder(state => state && {...state, phase: "disappearing"})
+                clearTimeout(timeout)
+            }
         }
-    }, [phase])
+    }, [phase, setLiftedFolder])
 
     if (error) return <div>{error}</div>
     if (!htmlData) return null;
@@ -86,24 +94,24 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
     return (
         <div className="absolute z-[201] flex items-center justify-center overflow-hidden"
              style={{
-                 width: "84vw",
-                 height: "85vh",
+                 width: "90vw",
+                 height: "90vh",
                  transition: "transform 0.5s ease, opacity 0.4s ease",
-                 transformOrigin: "center",
+                 transformOrigin: "center", //not sure if this needs to change to folder's bounding rect but lwk since the folder is going to the center its probably fine
                  transform:
-                     phase === "bar"
+                     phase === "bar" || phase === "idle"
                          ? "scaleX(0.01) scaleY(1)"
                          : phase === "expand"
                              ? "scaleX(1) scaleY(1)"
                              : phase === "collapsing"
                                  ? "scaleX(0.01) scaleY(1)"
                                  : "scaleX(1) scaleY(1)",
-                 opacity: phase === "gone" ? 0 : 1,
+                 opacity: phase === "gone" || phase === "idle" ? 0 : 1,
              }}
         > {/*full container?*/}
             <div className={"relative p-[2rem] bg-gray-500 flex flex-col gap-0.5"}> {/*viewport frame - fixed size...*/}
                 <div className={"text-lg text-gray-300 select-none"}>
-                    aeternus document viewer - Version One
+                    aeternus document viewer - Version Two
                 </div>
                 <div className={"text-center flex flex-row justify-between align-middle "}>
                     <div className={"justify-self-center self-center "}>
@@ -111,7 +119,7 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                     </div>
                     <div
                         className={"text-center select-none self-center cursor-pointer rounded-md text-xl size-[2.67rem] bg-gray-600 hover:bg-red-500 transition-all m-[0.5rem]"}
-                        onClick={() => setLiftedFolder(state => state && {...state, phase: "disappearing"})}
+                        onClick={() => setPhase("collapsing")}
                     >
                         x
                     </div>
@@ -120,9 +128,19 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                     width: "80vw",
                     height: "80vh"
                 }}>{/*camera layer! apply same translate scale to document as earlier pan+zoom logic*/}
-                    <div style={{contain: "initial", userSelect: "none"}}>
-                        <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
-                    </div>
+
+                            <div style={{
+                                opacity: phase !== "reading" ? 0 : 1,
+                                transition: "transform 0.5s ease, opacity 0.4s ease",
+                                display: "flex",
+                                justifyContent: "center"
+                            }}>
+                                <div style={{contain: "initial", userSelect: "none"}}>
+                                    <ShadowDOMComponent htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
+                                </div>
+                            </div>
+                        )
+
                 </PannableArea>
             </div>
         </div>
