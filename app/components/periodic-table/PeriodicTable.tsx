@@ -42,7 +42,7 @@ export default function PeriodicTable(props: PeriodicTableProps) {
     }, [])
     const shuffledElements = useMemo(() => {
         return shuffle([...filledElements]) as ElementBasicMetadata[];
-    });
+    }, []);
     const animationDuration = 2000 //in ms
     const timeBetweenElements = animationDuration / shuffledElements.length
 
