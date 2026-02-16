@@ -4,7 +4,7 @@ import {periodicTableElementsBasicData} from "@/public/elementData/periodic-tabl
 import {ElementBasicMetadata} from "@/app/schema";
 import ElementBlock from "@/app/components/periodic-table/ElementBlock";
 import {PannableArea} from "@/app/components/universal/PannableArea";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 type PeriodicTableProps = {
     visible: boolean;
@@ -34,17 +34,18 @@ function shuffle(array: unknown[]) {
 
 //periodic table will be the pannable viewport
 export default function PeriodicTable(props: PeriodicTableProps) {
+    const [visibleElements, setVisibleElements] = useState<Set<number>>(new Set());
+
     const elements = Object.values(periodicTableElementsBasicData)
     const filledElements = elements.filter((el: ElementBasicMetadata) => {
         return el.archiveDocuments.length !== 0
-    })
-    const shuffledElements = shuffle(filledElements) as unknown as ElementBasicMetadata[];
-
-    const animationDuration = 5000 //in ms
+    }, [])
+    const shuffledElements = useMemo(() => {
+        return shuffle([...filledElements]) as ElementBasicMetadata[];
+    }, []);
+    const animationDuration = 2000 //in ms
     const timeBetweenElements = animationDuration / shuffledElements.length
 
-
-    const [visibleElements, setVisibleElements] = useState<Set<number>>(new Set());
 
     useEffect(() => {
         let mounted = true;
@@ -57,7 +58,7 @@ export default function PeriodicTable(props: PeriodicTableProps) {
             });
         }
         return () => { mounted = false; }
-    }, [shuffledElements, props.visible, timeBetweenElements]);
+    }, [props.visible]);
 
     if (!props.visible) {
         return null

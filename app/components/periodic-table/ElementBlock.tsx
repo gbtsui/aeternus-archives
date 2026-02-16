@@ -70,8 +70,8 @@ export default function ElementBlock(props: ElementBlockProps) {
              style={{
                  gridColumn: elementData.column,
                  gridRow: elementData.row,
-                 //transform: visible ? "scale(1)" : "scale(0.5)",
-                 //opacity: visible ? "100%" : "0%",
+                 transform: visible ? "scale(1)" : "scale(0.5)",
+                 opacity: visible ? "100%" : "0%",
                  transition: "all 0.5s ease",
                  ...(hovering ? hoverStyle : {})
              }}
