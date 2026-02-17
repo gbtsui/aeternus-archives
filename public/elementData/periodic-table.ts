@@ -160,5 +160,18 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         row: 4,
         characterName: "Ashe",
         archiveDocuments: []
+    },
+
+    35: {
+        atomicNumber: 35,
+        symbol: "Br",
+        name: "Bromine",
+        elementType: "halogen",
+        column: 17,
+        row: 4,
+        characterName: "Fengxian",
+        archiveDocuments: [
+            {filename: "legend-of-the-tiger.html", title: "Legend of The Tiger"}
+        ]
     }
 }
