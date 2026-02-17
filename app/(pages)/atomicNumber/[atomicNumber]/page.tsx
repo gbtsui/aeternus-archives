@@ -19,6 +19,13 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
     const [stageState, setStageState] = useState<StageState>("open")
     const [liftedFolder, setLiftedFolder] = useState<AnimatedFolderLiftState>(null)
 
+    const [randomStickyNote, setRandomStickyNote] = useState(() => {
+        if (typeof window === "undefined") return "loading"
+
+        const hasTutorials = sessionStorage.getItem("tutorialClicked")
+        return !!hasTutorials
+    })
+
     if (!Number.isInteger(atomicNumberAsNumber)) {
         return <div>Error! Invalid element. Maybe I have not added it yet, or maybe it is an impossible atomic number...</div>
     }
@@ -41,16 +48,28 @@ export default function ElementPage({params} : {params: Promise<{atomicNumber: s
             >
                 back
             </div>
-            <StickyNote position={{top: "20vh", right: "10vw"}}>
-                pick a folder to get started!
-            </StickyNote>
-            <StickyNote position={{top: "10vh", right: "20vw"}}>
-                please remove stickynotes before operating the document reader, thanks :)
 
-                <div className={"text-lg"}>
-                    - bookkeeper
-                </div>
-            </StickyNote>
+            {
+                !randomStickyNote && (
+                    <>
+                        <StickyNote position={{top: "20vh", right: "10vw"}} onClick={() => {
+                            sessionStorage.setItem("tutorialClicked", "true")
+                        }}>
+                            pick a folder to get started!
+                        </StickyNote>
+                        <StickyNote position={{top: "10vh", right: "20vw"}} onClick={() => {
+                            sessionStorage.setItem("tutorialClicked", "true")
+                        }}>
+                            please remove stickynotes before operating the document reader, thanks :)
+
+                            <div className={"text-lg"}>
+                                - bookkeeper
+                            </div>
+                        </StickyNote>
+                    </>
+                )
+            }
+
             <DocumentStage state={stageState} setState={setStageState} archiveDocuments={archiveDocuments} setLiftedFolder={setLiftedFolder} liftedFolder={liftedFolder}/>
             <div className={"relative h-[100vh] w-[100vw] z-0 flex items-center justify-center overflow-hidden"}>
                 <div className={"text-gray-700 text-3xl text-center"}>

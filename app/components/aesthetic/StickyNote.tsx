@@ -11,12 +11,13 @@ type StickyNoteProps = {
         left?: string,
         right?: string,
         bottom?: string,
-    }
+    },
+    onClick?(): void,
 }
 
 
 export default function StickyNote(props: StickyNoteProps) {
-    const {children, position} = props;
+    const {children, position, onClick} = props;
     const [tilt, setTilt] = useState(props.tilt || 0);
     const [visible, setVisible] = useState(true);
     const [mounted, setMounted] = useState(true);
@@ -47,7 +48,7 @@ export default function StickyNote(props: StickyNoteProps) {
     return (
         <div
             className={`absolute font-nothing-you-could-do bg-amber-200 text-blue-900 w-[200px] h-[200px] text-center justify-center p-[25px] flex flex-col cursor-pointer pointer-events-auto z-[15] ${visible ? "" : "exit"} `}
-            style={harryStyles} onClick={() => setVisible(false)} onAnimationEnd={() => setMounted(false)}>
+            style={harryStyles} onClick={() => setVisible(false)} onAnimationEnd={() => {if (onClick) onClick(); setMounted(false)}}>
             {children}
         </div>
     )
