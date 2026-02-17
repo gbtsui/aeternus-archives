@@ -87,8 +87,10 @@ export default function Startup(props: StartupProps) {
     }
 
     return (
-        <div className="bg-white text-black w-3/4 h-3/4 flex items-center justify-center absolute" style={complete ? outroAnimationStyle : introAnimationStyle}>
-            <span className="text-lg">{typedMessage}</span>
+        <div className="bg-white text-black w-3/4 h-3/4 flex gap-[10vh] flex-col items-center justify-center absolute" style={complete ? outroAnimationStyle : introAnimationStyle}>
+            <div className="text-lg">{typedMessage}</div>
+
+            <img src={"/assets/universal/aeternus-logo.svg"} alt={"aeternus logo"} className={"w-[25vw] h-[25vw]"}/>
         </div>
     );
 }
