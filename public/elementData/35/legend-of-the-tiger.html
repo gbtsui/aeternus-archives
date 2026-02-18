@@ -1,77 +1,180 @@
 <style>
+    .container {
+        width: 297mm;
+        height: 210mm;
+        /*background: #eee0d1;*/
+        background-image: url("/assets/elemental/35/Br_painting_background.jpeg");
+        color: #000;
+        margin-bottom: 30mm;
+        font-size: 8pt;
+    }
 
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 20mm;
+
+    }
+
+    .title {
+        font-size: 18pt;
+        font-weight: bold;
+    }
+
+    .author {
+        font-size: 12pt;
+        font-weight: normal;
+    }
+
+    .poemContainer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .poemEnglish {
+        width: 35%;
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 2mm;
+    }
+
+    .poemEnglishStanza {
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+    }
+
+    .poemChinese {
+        width: 15%;
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 5mm;
+        font-size: 8.5pt;
+    }
+
+    .poemChineseStanza {
+        display: flex;
+        flex-direction: column;
+        writing-mode: vertical-rl;
+        width: 100%;
+    }
+
+    .painting {
+        object-fit: cover;
+        height: 180mm;
+    }
 </style>
 
-<div>
-    In the years of old
-    When the vernal winds blew around Mount Xiangshan
-    In the ages of ancient
-    When the spring warmth melted the ice of the Two Rivers
+<div class="container">
+    <div class="header">
+        <div class="title">Legend of the Tiger</div>
+        <div class="author">Liu Jinyu / 劉金玉</div>
+    </div>
+    <div class="poemContainer">
+        <div class="poemEnglish">
+            <div class="poemEnglishStanza">
+                <div>In the years of old</div>
+                <div>When the vernal winds blew around Mount Xiangshan</div>
+                <div>In the ages of ancient</div>
+                <div>When the spring warmth melted the ice of the Two Rivers</div>
+            </div>
 
-    A tiger of steel ripped through the peace
-    The flames of war stopped him not
-    As he galloped on forwards
-    Among the autumn leaves in his path
+            <div class="poemEnglishStanza">
+                <div>A tiger of steel ripped through the peace</div>
+                <div>The flames of war stopped him not</div>
+                <div>As he galloped on forwards</div>
+                <div>Among the autumn leaves in his path</div>
+            </div>
 
-    Through the mist and the smoke
-    Through the blood-soaked ground
-    He quenched the blaze of wrath
-    He pacified the war-torn land
+            <div class="poemEnglishStanza">
+                <div>Through the mist and the smoke</div>
+                <div>Through the blood-soaked ground</div>
+                <div>He quenched the blaze of wrath</div>
+                <div>He pacified the war-torn land</div>
+            </div>
 
-    The General of Vehement Might
-    Stood steadfast, unwavering
-    A knife to the back of those who wronged him
-    And victory in the duels of honor
+            <div class="poemEnglishStanza">
+                <div>The General of Vehement Might</div>
+                <div>Stood steadfast, unwavering</div>
+                <div>A knife to the back of those who wronged him</div>
+                <div>And victory in the duels of honor</div>
+            </div>
 
-    He knew not defeat
-    Nor was his pride shaken by death
-    His valiance had no bounds
-    And his strength unfettered by border
+            <div class="poemEnglishStanza">
+                <div>He knew not defeat</div>
+                <div>Nor was his pride shaken by death</div>
+                <div>His valiance had no bounds</div>
+                <div>And his strength unfettered by border</div>
+            </div>
 
-    Mist blows from the Eastern islands
-    The phantom comes to hunt him
-    Undeterred, he presses on
-    And the blades of East and West clash
+            <div class="poemEnglishStanza">
+                <div>Mist blows from the Eastern islands</div>
+                <div>The phantom comes to hunt him</div>
+                <div>Undeterred, he presses on</div>
+                <div> And the blades of East and West clash</div>
+            </div>
 
-    The tiger hunts no more
-    Lost in the fog
-    The summer breeze flows around the mountains
-    The water freezes once again
-</div>
+            <div class="poemEnglishStanza">
+                <div>The tiger hunts no more</div>
+                <div>Lost in the fog</div>
+                <div>The summer breeze flows around the mountains</div>
+                <div>The water freezes once again</div>
+            </div>
+        </div>
 
-<div>
-    往昔歲月
-    春風繞象山
-    古老時代
-    暖融雙河冰
+        <img src="/assets/elemental/35/Br_drawing_1.png" class="painting" alt="Legend of the Tiger"/>
 
-    鋼虎破寧靜
-    戰火未能阻
-    他飛馳向前
-    穿越途中秋葉
+        <div class="poemChinese">
+            <div class="poemChineseStanza">
+                <div>往昔歲月</div>
+                <div>春風繞象山</div>
+                <div>古老時代</div>
+                <div>暖融雙河冰</div>
+            </div>
 
-    穿越迷霧與硝煙
-    穿越血浸的大地
-    他熄滅了狂怒之火
-    他平息了戰亂之地
-
-    奮威將軍
-    屹立不動搖
-    背後的刀，報復冤敵
-    榮譽決鬥中取勝
-
-    他不知失敗
-    驕傲亦不因死亡動搖
-    他的勇氣無邊
-    力量不受疆界束縛
-
-    霧自東島起
-    幽魂前來獵他
-    他無畏前行
-    東西之刃交鋒
-
-    虎不再狩獵
-    迷失於霧中
-    夏風繞群山
-    江水復凍結
+            <div class="poemChineseStanza">
+                <div>鋼虎破寧靜</div>
+                <div>戰火未能阻</div>
+                <div>他飛馳向前</div>
+                <div>穿越途中秋葉</div>
+            </div>
+            <div class="poemChineseStanza">
+                <div>穿越迷霧與硝煙</div>
+                <div>穿越血浸的大地</div>
+                <div>他熄滅了狂怒之火</div>
+                <div>他平息了戰亂之地</div>
+            </div>
+            <div class="poemChineseStanza">
+                <div>奮威將軍</div>
+                <div>屹立不動搖</div>
+                <div>背後的刀，報復冤敵</div>
+                <div>榮譽決鬥中取勝</div>
+            </div>
+            <div class="poemChineseStanza">
+                <div>他不知失敗</div>
+                <div>驕傲亦不因死亡動搖</div>
+                <div>他的勇氣無邊</div>
+                <div>力量不受疆界束縛</div>
+            </div>
+            <div class="poemChineseStanza">
+                <div>霧自東島起</div>
+                <div>幽魂前來獵他</div>
+                <div>他無畏前行</div>
+                <div>東西之刃交鋒</div>
+            </div>
+            <div class="poemChineseStanza">
+                <div>虎不再狩獵</div>
+                <div>迷失於霧中</div>
+                <div>夏風繞群山</div>
+                <div>江水復凍結</div>
+            </div>
+        </div>
+    </div>
+    <!-- wo men (shi, wo men) shi zhong guo ren. ni shi zhong guo ren. wo shi zhong guo ren. -->
 </div>
