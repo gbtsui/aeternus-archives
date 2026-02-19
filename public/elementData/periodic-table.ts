@@ -173,5 +173,18 @@ export const periodicTableElementsBasicData: Record<number, ElementBasicMetadata
         archiveDocuments: [
             {filename: "legend-of-the-tiger.html", title: "Legend of The Tiger"}
         ]
+    },
+
+    32: {
+        atomicNumber: 32,
+        symbol: "Ge",
+        name: "Germanium",
+        elementType: "metalloid",
+        column: 14,
+        row: 4,
+        characterName: "Ilsa",
+        archiveDocuments: [
+            {filename: "militarpass.html", title: "Militärpass"}
+        ]
     }
 }
