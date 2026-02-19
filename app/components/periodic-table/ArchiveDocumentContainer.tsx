@@ -156,7 +156,7 @@ export default function ArchiveDocumentContainer(props: ArchiveDocumentContainer
                         display: "flex",
                         justifyContent: "center"
                     }}>
-                        <div style={{contain: "initial", userSelect: "none"}}>
+                        <div style={{contain: "initial", userSelect: "none", pointerEvents: "none"}}>
                             <ShadowDOMComponent
                                 htmlContent={htmlData}/> {/*document inside should never handle pan or zoom btw*/}
                         </div>
