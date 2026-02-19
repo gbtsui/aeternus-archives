@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import {
-    Caudex,
+    Caudex, Cormorant_Garamond,
     Courier_Prime,
     Edu_TAS_Beginner,
     Nothing_You_Could_Do, Noto_Sans_HK,
     Noto_Serif_HK,
-    Playpen_Sans, Ubuntu
+    Playpen_Sans, Ubuntu, UnifrakturCook
 } from "next/font/google";
 import "./globals.css";
 
@@ -63,6 +63,17 @@ const ubuntu = Ubuntu({
     weight: "400"
 })
 
+const unifrakturCook = UnifrakturCook({
+    variable: "--font-unifraktur-cook",
+    weight: "700",
+    subsets: ["latin"]
+})
+
+const cormorantGaramond = Cormorant_Garamond({
+    variable: "--font-cormorant-garamond",
+    weight: "variable",
+    subsets: ["latin"]
+})
 
 export const metadata: Metadata = {
   title: "AETERNUS ARCHIVES",
@@ -77,7 +88,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${notoSerif.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} ${playpenSans.variable} ${courierPrime.variable} ${ubuntu.variable} ${notoSans.variable} ${notoSansExtraLight} antialiased`}
+        className={`${notoSerif.variable} ${cormorantGaramond.variable} ${nothingYouCouldDo.variable} ${eduTasBeginner.variable} ${caudex.variable} ${playpenSans.variable} ${courierPrime.variable} ${ubuntu.variable} ${notoSans.variable} ${notoSansExtraLight.variable} ${unifrakturCook.variable} antialiased`}
       >
         {children}
       </body>

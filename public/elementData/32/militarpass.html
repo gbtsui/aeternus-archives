@@ -2,111 +2,180 @@
     .container {
         width: 176mm;
         height: 125mm;
-        background: #fefefe;
+        background: #eee2c8;
         color: #000;
         margin-bottom: 30mm;
+        display: flex;
+        flex-direction: row;
+        /*font-family: 'UnifrakturCook';*/
+        font-size: 9pt
     }
+
+    .leftPage {
+        width: 86mm;
+        padding: 2mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .rightPage {
+        width: 86mm;
+        padding: 2mm;
+    }
+
+    .portrait {
+        width: 50mm;
+        height: 50mm;
+        pointer-events: none;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .titleThing {
+        font-size: 14pt;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .portraitSection {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        font-size: 7pt;
+    }
+
+    .unifrakturCook {
+        font-family: "UnifrakturCook"
+    }
+
+    .cormorantGaramond {
+        font-family: "Cormorant Garamond"
+    }
+
+    .smallText {
+        font-size: 7pt;
+    }
+
+    .spreadOut {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
 </style>
 
 <div class="container">
     <div class="leftPage">
-        <div>Dienstnummer 390625</div>
-        <div>
+        <div class="header unifrakturCook">
+            <div class="titleThing">Militärpass</div>
+            <div>Dienstnummer 390625</div>
+        </div>
+
+        <div class="portraitSection unifrakturCook">
             <img src="/assets/elemental/32/Ge_portrait_1.PNG" class="portrait" alt="portrait of Ilse Kant-Albrecht"/>
             <div>
                 Von den Bestimmungen auf Seite 67, 68 und 69 habe ich Kenntnis gebunden
             </div>
         </div>
-        <div>
-            <div class="signature">
+        <div class="unifrakturCook smallText spreadOut">
+            <div class="smallText">Unterschrift des inhabers</div>
+            <div class="cormorantGaramond">
                 Ilse Kant-Albrecht
             </div>
-            Unterschrift des inhabers - Vorname, Familienname
         </div>
 
-        <div>
+        <div class="unifrakturCook">
             <div>
-                <div>
-                    Größe in Zentimetern <span>168cm</span>
+                <div class="smallText spreadOut">
+                    Größe in Zentimetern <div class="cormorantGaramond">168cm</div>
                 </div>
-                <div>
-                    Körperbauform <span>Medium</span>
+                <div class="smallText spreadOut">
+                    Körperbauform <div class="cormorantGaramond">Medium</div>
                 </div>
             </div>
             <div>
-                <div>
-                    Augenfarbe <span>Gelbgold</span>
+                <div class="smallText spreadOut">
+                    Augenfarbe <div class="cormorantGaramond">Gelbgold</div>
                 </div>
-                <div>
-                    Haarfarbe <span>Schmutzigblond</span>
+                <div class="smallText spreadOut">
+                    Haarfarbe <div class="cormorantGaramond">Schmutzigblond</div>
                 </div>
             </div>
         </div>
-        <div>
-            Besondere Kennzeichen <span>null</span>
+        <div class="unifrakturCook smallText spreadOut">
+            Besondere Kennzeichen <div  class="cormorantGaramond">null</div>
         </div>
 
-        <div>Blutgruppe AB</div>
+        <div  class="unifrakturCook smallText spreadOut">Blutgruppe <div class="cormorantGaramond">AB</div></div>
     </div>
     <div class="rightPage">
-        <div>
-            <div>Angaben zur Person</div>
+        <div class="header unifrakturCook">
+            <div class="titleThing">Angaben zur Person</div>
         </div>
-        <table>
+        <table class="unifrakturCook smallText spreadOut">
             <tr>
                 <td>1</td>
                 <td>Familien-name</td>
-                <td>Kant-Albrecht</td>
+                <td class="cormorantGaramond">Kant-Albrecht</td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Vornamen</td>
-                <td>Ilse</td>
+                <td class="cormorantGaramond">Ilse</td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>Geburtstag, -monat, -jahr</td>
-                <td>2 Mai 1195</td>
+                <td>Geburtstag</td>
+                <td class="cormorantGaramond">2 Mai 1195</td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Geburtsort</td>
-                <td>Königsberg</td>
+                <td class="cormorantGaramond">Königsberg</td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Religiöses Bekenntnis</td>
-                <td>Teutonische Kirche</td>
+                <td class="cormorantGaramond">Teutonische Kirche</td>
             </tr>
             <tr>
                 <td>6</td>
                 <td>Familienstand</td>
-                <td>unverheiratet</td>
+                <td class="cormorantGaramond">Unverheiratet</td>
             </tr>
             <tr>
                 <td>7</td>
                 <td>Ernennung zum Offizier</td>
-                <td>4 September 1217</td>
+                <td class="cormorantGaramond">4 September 1217</td>
             </tr>
             <tr>
                 <td>8</td>
                 <td>Zugehöriger Teilstaat</td>
-                <td>Teutonia</td>
+                <td class="cormorantGaramond">Teutonia</td>
             </tr>
             <tr>
                 <td>7</td>
                 <td>Waffengattung</td>
-                <td>Luftstreitkräfte</td>
+                <td class="cormorantGaramond">Luftstreitkräfte</td>
             </tr>
             <tr>
                 <td>8</td>
                 <td>Rang</td>
-                <td>Rittmeister</td>
+                <td class="cormorantGaramond">Rittmeister</td>
             </tr>
             <tr>
                 <td>9</td>
                 <td>Abteilungen</td>
-                <td>Jasta 7</td>
+                <td class="cormorantGaramond">Jasta 7</td>
             </tr>
         </table>
     </div>
